@@ -12,7 +12,7 @@
             scroll-behavior: smooth;
         }
         body {
-            margin: 40px;
+            margin: 0;
             font-family: Arial, sans-serif;
             background-color: white;
             color: #4b0082;
@@ -25,7 +25,7 @@
         .sticky-bar {
             position: fixed;
             top: 0;
-            width: calc(100% - 110px);
+            width: 100%;
             background: #4b0082;
             padding: 15px;
             display: flex;
@@ -46,18 +46,9 @@
         .sticky-bar a:hover {
             background: rgba(255, 255, 255, 0.2);
         }
-        .hero, .projects, .contact {
-            max-width: 1400px;
-            margin: auto;
-            padding: 60px 20px;
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            margin-top: 80px;
-        }
         .hero {
-            height: 72vh;
-            background: linear-gradient(rgba(75, 0, 130, 0.6), rgba(75, 0, 130, 0.6)), url('your-image.jpg') center/cover no-repeat;
+            height: 100vh;
+            background: linear-gradient(rgba(75, 0, 130, 0.6), rgba(75, 0, 130, 0.6)), url('placeholder-image.jpg') center/cover no-repeat;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -66,8 +57,63 @@
             font-weight: bold;
             text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
             text-align: center;
+            position: relative;
         }
-        .project, .sub-project {
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('placeholder-image.jpg') center/cover no-repeat;
+            opacity: 0.2;
+        }
+        .projects, .certifications, .contact {
+            max-width: 1000px;
+            margin: auto;
+            padding: 60px 20px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            margin-top: 80px;
+        }
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+        .project-item {
+            display: flex;
+            flex-direction: column;
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.3s ease;
+        }
+        .project-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+        }
+        .project-image {
+            width: 100%;
+            height: 200px;
+            border-radius: 8px;
+            background-size: cover;
+            background-position: center;
+        }
+        .project-text {
+            padding: 10px;
+            font-size: 16px;
+            font-weight: bold;
+        }
+        .certifications {
+            margin-top: 40px;
+        }
+        .certification {
             background: white;
             padding: 15px;
             margin: 10px 0;
@@ -86,55 +132,13 @@
             border-left: 3px solid #4b0082;
             border-radius: 4px;
         }
-        .code-block {
-            background: #2d2d2d;
-            color: #f8f8f2;
-            padding: 15px;
-            border-radius: 8px;
-            font-family: monospace;
-            position: relative;
-        }
-        .copy-button {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background: #444;
-            color: white;
-            border: none;
-            padding: 5px 10px;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-        .contact a {
-            color: #4b0082;
-            text-decoration: none;
-            font-weight: bold;
-        }
-        .contact a:hover {
-            color: #9370db;
-        }
     </style>
-    <script>
-      function toggleDropdown(id) {
-    let element = document.getElementById(id);
-    if (element) {
-        element.style.display = (element.style.display === "block") ? "none" : "block";
-    }
-}
-
-function copyCode(id) {
-    let codeBlock = document.getElementById(id);
-    if (codeBlock) {
-        navigator.clipboard.writeText(codeBlock.innerText);
-    }
-}
-
-    </script>
 </head>
 <body>
     <div class="sticky-bar">
         <a href="#top">Home</a>
         <a href="#projects">Projects</a>
+        <a href="#certifications">Certifications</a>
         <a href="#contact">Contact</a>
     </div>
     
@@ -144,131 +148,54 @@ function copyCode(id) {
     
     <section id="projects" class="projects">
         <h2>Projects</h2>
-        <!-- Project 1 -->
-    <div class="project" onclick="toggleDropdown('project1')">Project 1 <span class="dropdown-icon">▼</span></div>
-    <div id="project1" class="dropdown">
-        <div class="sub-project" onclick="toggleDropdown('projectSummary1')">Project Summary <span class="dropdown-icon">▼</span></div>
-        <div id="projectSummary1" class="dropdown">Summary details...</div>
-        <div class="sub-project" onclick="toggleDropdown('projectEnvironment1')">Project Environment <span class="dropdown-icon">▼</span></div>
-        <div id="projectEnvironment1" class="dropdown">Environment details...</div>
-        <div class="sub-project" onclick="toggleDropdown('worksheet1')">Worksheet Build <span class="dropdown-icon">▼</span></div>
-        <div id="worksheet1" class="dropdown">
-            <div class="code-block" id="codeSnippet1">
-                let x = 10;<br>
-                let y = 20;<br>
-                let z = x + y; // z is 30
-            </div>
-            <button class="copy-button" onclick="copyCode('codeSnippet1')">Copy</button>
-        </div>
-        <div class="sub-project" onclick="toggleDropdown('dashboard1')">Dashboard Build <span class="dropdown-icon">▼</span></div>
-        <div id="dashboard1" class="dropdown">
-            <img src="your-dashboard-image1.jpg" alt="Dashboard Screenshot" style="width:100%; border-radius:8px;">
-        </div>
-    </div>
-        
-        <!-- Project 2 -->
-    <div class="project" onclick="toggleDropdown('project2')">Project 2 <span class="dropdown-icon">▼</span></div>
-    <div id="project2" class="dropdown">
-        <div class="sub-project" onclick="toggleDropdown('projectSummary2')">Project Summary <span class="dropdown-icon">▼</span></div>
-        <div id="projectSummary2" class="dropdown">Summary details...</div>
-        <div class="sub-project" onclick="toggleDropdown('projectEnvironment2')">Project Environment <span class="dropdown-icon">▼</span></div>
-        <div id="projectEnvironment2" class="dropdown">Environment details...</div>
-        <div class="sub-project" onclick="toggleDropdown('worksheet2')">Worksheet Build <span class="dropdown-icon">▼</span></div>
-        <div id="worksheet2" class="dropdown">
-            <div class="code-block" id="codeSnippet2">
-                console.log("Project 2 Code");
-            </div>
-            <button class="copy-button" onclick="copyCode('codeSnippet2')">Copy</button>
-        </div>
-        <div class="sub-project" onclick="toggleDropdown('dashboard2')">Dashboard Build <span class="dropdown-icon">▼</span></div>
-        <div id="dashboard2" class="dropdown">
-            <img src="your-dashboard-image2.jpg" alt="Dashboard Screenshot" style="width:100%; border-radius:8px;">
-        </div>
-    </div>
-
-    <!-- Project 3 -->
-    <div class="project" onclick="toggleDropdown('project3')">Project 3 <span class="dropdown-icon">▼</span></div>
-    <div id="project3" class="dropdown">
-        <div class="sub-project" onclick="toggleDropdown('projectSummary3')">Project Summary <span class="dropdown-icon">▼</span></div>
-        <div id="projectSummary3" class="dropdown">Summary details...</div>
-        <div class="sub-project" onclick="toggleDropdown('projectEnvironment3')">Project Environment <span class="dropdown-icon">▼</span></div>
-        <div id="projectEnvironment3" class="dropdown">Environment details...</div>
-        <div class="sub-project" onclick="toggleDropdown('worksheet3')">Worksheet Build <span class="dropdown-icon">▼</span></div>
-        <div id="worksheet3" class="dropdown">
-            <div class="code-block" id="codeSnippet3">
-                console.log("Project 3 Code");
-            </div>
-            <button class="copy-button" onclick="copyCode('codeSnippet3')">Copy</button>
-        </div>
-        <div class="sub-project" onclick="toggleDropdown('dashboard3')">Dashboard Build <span class="dropdown-icon">▼</span></div>
-        <div id="dashboard3" class="dropdown">
-            <img src="your-dashboard-image3.jpg" alt="Dashboard Screenshot" style="width:100%; border-radius:8px;">
-        </div>
-    </div>
-    
-        <div class="project" onclick="toggleDropdown('project1')">Project 1 <span class="dropdown-icon">▼</span></div>
-        <div id="project4" class="dropdown">
-            <div class="sub-project" onclick="toggleDropdown('projectSummary')">Project Summary <span class="dropdown-icon">▼</span></div>
-            <div id="projectSummary" class="dropdown">Summary details...</div>
-            <div class="sub-project" onclick="toggleDropdown('projectEnvironment')">Project Environment <span class="dropdown-icon">▼</span></div>
-            <div id="projectEnvironment" class="dropdown">Environment details...</div>
-            <div class="sub-project" onclick="toggleDropdown('worksheet')">Worksheet Build <span class="dropdown-icon">▼</span></div>
-            <div id="worksheet" class="dropdown">
-                <div class="code-block" id="codeSnippet">
-                    let x = 10;<br>
-                    let y = 20;<br>
-                    let z = x + y; // z is 30
+        <div class="projects-grid">
+            <a href="Project1.html" target="_blank" class="project-link">
+                <div class="project-item">
+                    <div class="project-image" style="background-image: url('project1.jpg');"></div>
+                    <div class="project-text">Project 1</div>
                 </div>
-                <button class="copy-button" onclick="copyCode('codeSnippet')">Copy</button>
-            </div>
-            <div class="sub-project" onclick="toggleDropdown('dashboard')">Dashboard Build <span class="dropdown-icon">▼</span></div>
-            <div id="dashboard" class="dropdown">
-                <img src="your-dashboard-image.jpg" alt="Dashboard Screenshot" style="width:100%; border-radius:8px;">
-            </div>
-        </div>
-
-        <div class="project" onclick="toggleDropdown('project1')">Project 1 <span class="dropdown-icon">▼</span></div>
-        <div id="project5" class="dropdown">
-            <div class="sub-project" onclick="toggleDropdown('projectSummary')">Project Summary <span class="dropdown-icon">▼</span></div>
-            <div id="projectSummary" class="dropdown">Summary details...</div>
-            <div class="sub-project" onclick="toggleDropdown('projectEnvironment')">Project Environment <span class="dropdown-icon">▼</span></div>
-            <div id="projectEnvironment" class="dropdown">Environment details...</div>
-            <div class="sub-project" onclick="toggleDropdown('worksheet')">Worksheet Build <span class="dropdown-icon">▼</span></div>
-            <div id="worksheet" class="dropdown">
-                <div class="code-block" id="codeSnippet">
-                    let x = 10;<br>
-                    let y = 20;<br>
-                    let z = x + y; // z is 30
+            </a>
+            <a href="Project2.html" target="_blank" class="project-link">
+                <div class="project-item">
+                    <div class="project-image" style="background-image: url('project2.jpg');"></div>
+                    <div class="project-text">Project 2</div>
                 </div>
-                <button class="copy-button" onclick="copyCode('codeSnippet')">Copy</button>
-            </div>
-            <div class="sub-project" onclick="toggleDropdown('dashboard')">Dashboard Build <span class="dropdown-icon">▼</span></div>
-            <div id="dashboard" class="dropdown">
-                <img src="your-dashboard-image.jpg" alt="Dashboard Screenshot" style="width:100%; border-radius:8px;">
-            </div>
-        </div>
-
-        <div class="project" onclick="toggleDropdown('project6')">Project 1 <span class="dropdown-icon">▼</span></div>
-        <div id="project6" class="dropdown">
-            <div class="sub-project" onclick="toggleDropdown('projectSummary')">Project Summary <span class="dropdown-icon">▼</span></div>
-            <div id="projectSummary" class="dropdown">Summary details...</div>
-            <div class="sub-project" onclick="toggleDropdown('projectEnvironment')">Project Environment <span class="dropdown-icon">▼</span></div>
-            <div id="projectEnvironment" class="dropdown">Environment details...</div>
-            <div class="sub-project" onclick="toggleDropdown('worksheet')">Worksheet Build <span class="dropdown-icon">▼</span></div>
-            <div id="worksheet" class="dropdown">
-                <div class="code-block" id="codeSnippet">
-                    let x = 10;<br>
-                    let y = 20;<br>
-                    let z = x + y; // z is 30
+            </a>
+            <a href="Project3.html" target="_blank" class="project-link">
+                <div class="project-item">
+                    <div class="project-image" style="background-image: url('project3.jpg');"></div>
+                    <div class="project-text">Project 3</div>
                 </div>
-                <button class="copy-button" onclick="copyCode('codeSnippet')">Copy</button>
-            </div>
-            <div class="sub-project" onclick="toggleDropdown('dashboard')">Dashboard Build <span class="dropdown-icon">▼</span></div>
-            <div id="dashboard" class="dropdown">
-                <img src="your-dashboard-image.jpg" alt="Dashboard Screenshot" style="width:100%; border-radius:8px;">
-            </div>
+            </a>
+            <a href="Project4.html" target="_blank" class="project-link">
+                <div class="project-item">
+                    <div class="project-image" style="background-image: url('project4.jpg');"></div>
+                    <div class="project-text">Project 4</div>
+                </div>
+            </a>
         </div>
     </section>
+    
+    <section id="certifications" class="certifications">
+        <h2>Certifications</h2>
+        <div class="certification" onclick="toggleDropdown('cert1')">
+            Certification 1 <span class="dropdown-icon">▼</span>
+        </div>
+        <div id="cert1" class="dropdown" style="display: none;">
+            <a href="#">Certification Link</a>
+        </div>
+    </section>
+
+    <script>
+        function toggleDropdown(id) {
+            let element = document.getElementById(id);
+            if (element.style.display === "block") {
+                element.style.display = "none";
+            } else {
+                element.style.display = "block";
+            }
+        }
+    </script>
     
     <section id="contact" class="contact">
         <h2>Contact</h2>
