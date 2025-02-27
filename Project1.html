@@ -106,18 +106,32 @@
 
     </style>
     <script>
-        function toggleDropdown(id) {
-            let element = document.getElementById(id);
-            element.style.display = (element.style.display === 'block') ? 'none' : 'block';
-        }
+       function toggleDropdown(id) {
+    let element = document.getElementById(id);
+    let isVisible = element.style.display === 'block';
+
+    // Hide all dropdowns before opening a new one (optional)
+    // document.querySelectorAll('.dropdown').forEach(dropdown => {
+    //     dropdown.style.display = 'none';
+    // });
+
+    // Toggle the clicked dropdown
+    element.style.display = isVisible ? 'none' : 'block';
+
+    // Scroll into view only if opening
+    if (!isVisible) {
+        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+}
+
     </script>
 </head>
 <body>
     <div class="container">
         <h1>Project 1</h1>
         <div class="project-image1" style="
-        background-image: url('Images/SQL and powerbi logo.png');
-        background-size: cover;
+        background-image: url('Images/project1/SQL\ and\ powerbi\ logo.png');
+        /* background-size: cover; */
         background-position: center;
         width: 100%; /* Adjust width as needed */
         height: 350px; /* Set height as per your design */

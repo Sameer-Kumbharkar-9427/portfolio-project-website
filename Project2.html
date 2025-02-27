@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project 2</title>
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="script.js"></script>
+    <!-- Prism.js for Syntax Highlighting -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-sql.min.js"></script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: white;
+            color: #4b0082;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1275px;
+            margin: auto;
+            padding: 20px;
+            background: #f0f0ff;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .project-image1 {
+            width: 100%;
+            height: 300px;
+            background: #dcdcdc;
+            border-radius: 8px;
+
+        }
+
+        .dropdown {
+            display: none;
+            padding: 10px;
+            background: #ffffff;
+            margin-top: 5px;
+            border-left: 4px solid #4b0082;
+            border-radius: 4px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .dropdown-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            background: #4b0082;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .dropdown-header span {
+            font-size: 18px;
+        }
+
+        .dropdown-header i {
+            font-size: 20px;
+        }
+
+        pre {
+            background: #f4f4f4;
+            /* Light grey background */
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-size: 14px;
+        }
+
+        code {
+            font-family: 'Courier New', monospace;
+            color: #d63384;
+            /* Change to any color */
+        }
+
+        .sub-dropdown {
+            display: none;
+            padding: 10px;
+            margin-left: 20px;
+            background: #e9ecef;
+            border-left: 3px solid #6c757d;
+            border-radius: 5px;
+        }
+
+        .sub-dropdown-header {
+            background: #6c757d;
+            color: white;
+            padding: 8px;
+            margin-top: 5px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .sub-dropdown-header:hover {
+            background: #5a6268;
+        }
+
+        .project-image {
+            width: 100%;
+            height: 700px;
+            border-radius: 8px;
+            background-size: cover;
+            background-position: center;
+        }
+    </style>
+    <script>
+        function toggleDropdown(id) {
+            let element = document.getElementById(id);
+            let isVisible = element.style.display === 'block';
+
+            // Hide all dropdowns before opening a new one (optional)
+            // document.querySelectorAll('.dropdown').forEach(dropdown => {
+            //     dropdown.style.display = 'none';
+            // });
+
+            // Toggle the clicked dropdown
+            element.style.display = isVisible ? 'none' : 'block';
+
+            // Scroll into view only if opening
+            if (!isVisible) {
+                element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Project 2</h1>
+        <div class="project-image1" style="
+        background-image: url('Images/project2/Excel\ logo.png');
+        /* background-size: cover; */
+        background-position: center;
+        width: 100%; /* Adjust width as needed */
+        height: 350px; /* Set height as per your design */
+    ">
+        </div>
+
+
+
+        <div class="dropdown-header" onclick="toggleDropdown('summary')">
+            <span>Project Summary</span> <i>▼</i>
+        </div>
+        <div id="summary" class="dropdown">
+            This project focuses on analyzing the Bike Buyers Dataset to identify key customer trends and patterns. The final output is an interactive Excel Dashboard that visualizes insights about bike purchases based on customer demographics. The dashboard allows users to filter data dynamically using slicers for better decision-making.
+
+        </div>
+
+        <div class="dropdown-header" onclick="toggleDropdown('environment')">
+            <span>Tools & Technologies Used</span> <i>▼</i>
+        </div>
+        <div id="environment" class="dropdown">
+            
+                <h3>Microsoft Excel</h3>
+                <ul>
+                   <li>Pivot Tables & Pivot Charts</li> 
+                    <li>Data Cleaning (Find & Replace, Conditional Formatting)</li>
+                   <li>Formulas (IF statements for categorization)</li>
+                    <li>Data Visualization (Bar Chart, Line Chart, Slicers)</li>
+                </ul>
+            
+        </div>
+
+        <div class="dropdown-header" onclick="toggleDropdown('steps')">
+            <span>Download Dataset</span> <i>▼</i>
+        </div>
+        <div id="steps" class="dropdown">Bike buyers <a
+                href="https://github.com/Sameer-Kumbharkar-9427/Portfolio-Projects/blob/25bcf3767255ad7195ba534e36b88ea85c5ade83/bike_buyers_analysis/bike_buyer_dataset.xlsx">dataset</a>
+        </div>
+
+        <div class="dropdown-header" onclick="toggleDropdown('data-source')">
+            <span>Data Description</span> <i>▼</i>
+        </div>
+        <div id="data-source" class="dropdown">
+            
+                <h3>The dataset contains the following key attributes:</h3>
+                <ul>
+                   <li>Customer Demographics – Age, Gender, Marital Status, Region, Education</li> 
+                    <li>Financial Information – Annual Income</li>
+                   <li>Commute Details – Distance from home to work</li>
+                    <li>Purchase Decision – Whether the customer bought a bike (Yes/No)</li>
+                </ul>
+            
+        </div>
+
+        <div class="dropdown-header" onclick="toggleDropdown('data-checks')">
+            <span>Data Cleaning & Preparation</span> <i>▼</i>
+        </div>
+
+        <div id="data-checks" class="dropdown">
+            
+                <h3>To ensure data consistency and accuracy, the following steps were performed:</h3>
+            <ul>
+                <li>Removed duplicate records to eliminate redundant data.</li>
+                <li>Standardized Gender & Marital Status columns using Find & Replace to ensure uniformity.</li>
+                <li>Formatted "Income" column as currency for better readability.</li>
+                <li>Created an "Age Bracket" column using the formula:</li>
+                <pre><code class="language-sql">
+                    =IF(L15>54,"Old",IF(L15>=31,"Middle Age",IF(L15<31,"Adolescent","Invalid")))</code></pre>
+                <p>This categorized customers into Adolescent, Middle Age, and Old groups.</p>
+            </ul>
+        
+        </div>
+
+
+        <div class="dropdown-header" onclick="toggleDropdown('worksheet')">
+            <span>Data Visualization</span> <i>▼</i>
+        </div>
+        <div id="worksheet" class="dropdown">
+
+            <!-- Sub-dropdown: Customer Distribution -->
+            <div class="dropdown-header sub-dropdown-header" onclick="toggleDropdown('customer-distribution')">
+                <span>Pivot Tables</span> <i>▼</i>
+            </div>
+            <div id="customer-distribution" class="sub-dropdown">
+            <h3>The following pivot tables and visualizations were created:</h3>
+    
+    <ul>
+        <li>Average Income by Gender
+            <ul>
+                <li>Pivot Table: Summarized the average income for each gender.</li>
+                <li>Visualization: Displayed using a bar chart.</li>
+            </ul>
+        </li>
+        <li>Customer Commute Distance vs. Bike Purchase Preference
+            <ul>
+                <li>Pivot Table: Analyzed bike purchase decisions based on commute distance.</li>
+                <li>Visualization: Represented using a 2D line chart.</li>
+            </ul>
+        </li>
+        <li>Customer Age Bracket vs. Bike Purchase Preference
+            <ul>
+                <li>Pivot Table: Summarized bike purchases by different age brackets.</li>
+                <li>Visualization: Displayed using a bar chart.</li>
+            </ul>
+        </li>
+    </ul>
+</div>
+
+            
+
+            
+
+            <!-- Sub-dropdown: Churn Trends -->
+            <div class="dropdown-header sub-dropdown-header" onclick="toggleDropdown('churn-trends')">
+                <span>PowerBI Dashboard</span> <i>▼</i>
+            </div>
+
+            <div id="churn-trends" class="sub-dropdown">
+                <a
+                    href="https://github.com/Sameer-Kumbharkar-9427/Portfolio-Projects/blob/25bcf3767255ad7195ba534e36b88ea85c5ade83/bike_buyers_analysis/bike_buyers_finalworksheet_and_dashboard.xlsx">Dashboard
+                    Link</a>
+                <div class="project-image"
+                    style="background-image: url('Images/project2/bike_buyers_dashboard_screenshot.png');"></div>
+                <!-- Image Placeholder -->
+            </div>
+
+        </div>
+
+
+        <div class="dropdown-header" onclick="toggleDropdown('dashboard')">
+            <span>Dashboard Build & Story</span> <i>▼</i>
+        </div>
+        <div id="dashboard" class="dropdown">
+            <div class="project-image"></div> <!-- Image Placeholder -->
+        </div>
+    </div>
+</body>
+
+</html>
