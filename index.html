@@ -112,8 +112,10 @@
             width: 100%;
             height: 200px;
             border-radius: 8px;
-            background-size: cover;
+            background-size: contain;
+            background-repeat: no-repeat;
             background-position: center;
+            background-color: white;
         }
         .project-text {
             padding: 10px;
@@ -151,6 +153,20 @@
 a:hover {
     text-decoration: underline; /* Adds underline only on hover */
 }
+
+.cert-image {
+    width: 200px; /* Adjust size as needed */
+    height: auto;
+    border-radius: 8px; /* Optional: Rounded corners */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Optional: Adds a shadow */
+    cursor: pointer; /* Shows clickable behavior */
+    transition: transform 0.2s;
+}
+
+.cert-image:hover {
+    transform: scale(1.05); /* Slight zoom effect on hover */
+}
+
     </style>
 </head>
 <body>
@@ -170,7 +186,7 @@ a:hover {
         <div class="projects-grid">
             <a href="Project1.html" target="_blank" class="project-link">
                 <div class="project-item">
-                    <div class="project-image" style="background-image: url('Images/project1/SQL\ and\ powerbi\ logo.png');"></div>
+                    <div class="project-image" style="background-image: url('Images/project1/SQL\ and\ powerbi\ logo.jpg');"></div>
                     <div class="project-text">Project 1 </div>
                     <p >Telecom churn analysis using SQL & Power BI to identify key factors driving customer attrition</p>
                 </div>
@@ -184,7 +200,7 @@ a:hover {
             </a>
             <a href="Project3.html" target="_blank" class="project-link">
                 <div class="project-item">
-                    <div class="project-image" style="background-image: url('project3.jpg');"></div>
+                    <div class="project-image" style="background-image: url('Images/project3/MySQL\ Logo.png');"></div>
                     <div class="project-text">Project 3</div>
                     <p >This is a line of text.<br>This is another line.</p>
                 </div>
@@ -202,12 +218,43 @@ a:hover {
     <section id="certifications" class="certifications">
         <h2>Certifications</h2>
         <div class="certification" onclick="toggleDropdown('cert1')">
-            Certification 1 <span class="dropdown-icon">▼</span>
+            LinkedIn Learning Excel Certification <span class="dropdown-icon">▼</span>
         </div>
         <div id="cert1" class="dropdown" style="display: none;">
-            <a href="#">Certification Link</a>
+            <a href="https://www.linkedin.com/learning/certificates/9ad631650e6547a284de23b9e8fe4572c6846d13ed0ac59d6a6acb3e34c7c425?trk=share_certificate" 
+               target="_blank">
+                <img src="Images/certifications/Excel for business analytics certification.png" alt="Certification 1" class="cert-image">
+            </a>
+        </div>
+        <div class="certification" onclick="toggleDropdown('cert1')">
+            LinkedIn Learning SQL Essential <span class="dropdown-icon">▼</span>
+        </div>
+        <div id="cert1" class="dropdown" style="display: none;">
+            <a href="https://www.linkedin.com/learning/certificates/f3863c3f2e0bab3fefbfe4fcae5cf2c1cd9bd53c080d36afa6a553c22e11bd5b?trk=share_certificate" 
+               target="_blank">
+                <img src="Images/certifications/SQL essential.png" alt="Certification 1" class="cert-image">
+            </a>
+        </div>
+        <div class="certification" onclick="toggleDropdown('cert1')">
+            LinkedIn Learning MYSQL Data Analysis <span class="dropdown-icon">▼</span>
+        </div>
+        <div id="cert1" class="dropdown" style="display: none;">
+            <a href="https://www.linkedin.com/learning/certificates/a9786d82d1a11fcc03bfc23dd77d366233c0b8b466841b83e3885059ce80787f?trk=share_certificate" 
+               target="_blank">
+                <img src="Images/certifications/MYSQL data analysis.png" alt="Certification 1" class="cert-image">
+            </a>
+        </div>
+        <div class="certification" onclick="toggleDropdown('cert1')">
+            LinkedIn Learning Power BI Essential Training <span class="dropdown-icon">▼</span>
+        </div>
+        <div id="cert1" class="dropdown" style="display: none;">
+            <a href="https://www.linkedin.com/learning/certificates/b8eff611a98e8ae8524361deb55f92ac87492253cc15a16564f38431c7988cbb?trk=share_certificate" 
+               target="_blank">
+                <img src="Images/certifications/Power BI essential training.png" alt="Certification 1" class="cert-image">
+            </a>
         </div>
     </section>
+    
 
     <script>
         function toggleDropdown(id) {
