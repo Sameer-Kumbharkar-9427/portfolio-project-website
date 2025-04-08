@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project 7</title>
+    <title>Identifying key customer trends and patterns of bike buyers</title>
     <link rel="stylesheet" href="styles.css">
     <script defer src="script.js"></script>
     <!-- Prism.js for Syntax Highlighting -->
@@ -14,9 +14,9 @@
 
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Inter', sans-serif;
             background-color: white;
-            color: #4b0082;
+            color: #000000;
             margin: 0;
             padding: 20px;
         }
@@ -28,6 +28,10 @@
             background: #f0f0ff;
             border-radius: 15px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+            font-weight: 800;
+            color: #484848;
         }
 
         .project-image1 {
@@ -139,7 +143,7 @@
 
 <body>
     <div class="container">
-        <h1>Project 7</h1>
+        <h1>Identifying key customer trends and patterns of bike buyers</h1>
         <div class="project-image1">
         </div>
 
@@ -203,7 +207,7 @@
                 <li>Formatted "Income" column as currency for better readability.</li>
                 <li>Created an "Age Bracket" column using the formula:</li>
                 <pre><code class="language-sql">
-                    =IF(L15>54,"Old",IF(L15>=31,"Middle Age",IF(L15<31,"Adolescent","Invalid")))</code></pre>
+        =IF(L15>54,"Old",IF(L15>=31,"Middle Age",IF(L15<31,"Adolescent","Invalid")))</code></pre>
                 <p>This categorized customers into Adolescent, Middle Age, and Old groups.</p>
             </ul>
         
@@ -250,7 +254,7 @@
 
             <!-- Sub-dropdown: Churn Trends -->
             <div class="dropdown-header sub-dropdown-header" onclick="toggleDropdown('churn-trends')">
-                <span>PowerBI Dashboard</span> <i>▼</i>
+                <span>Excel Dashboard</span> <i>▼</i>
             </div>
 
             <div id="churn-trends" class="sub-dropdown">
@@ -265,13 +269,29 @@
         </div>
 
 
-        <div class="dropdown-header" onclick="toggleDropdown('dashboard')">
-            <span>Dashboard Build & Story</span> <i>▼</i>
+        <div class="dropdown-header" onclick="toggleDropdown('conclusion')">
+            <span>Conclusion</span> <i>▼</i>
         </div>
-        <div id="dashboard" class="dropdown">
-            <div class="project-image"></div> <!-- Image Placeholder -->
-        </div>
+        <div id="conclusion" class="dropdown">
+            <ul>
+                <li>Most bike buyers are middle-aged and have higher income, especially males.</li><br>
+                <li>People living closer (0–1 miles) to their destination are more likely to purchase bikes.</li><br>
+                <li>Understanding customer age, income, and commute distance can help improve marketing and sales strategies.</li>
+            </ul>
     </div>
+
+    <div class="dropdown-header" onclick="toggleDropdown('insights')">
+        <span>Key Insights</span> <i>▼</i>
+    </div>
+    <div id="insights" class="dropdown">
+        
+        <ul>
+            <li>Among both genders, bike purchasers earn more on average than non-buyers. Males who purchased bikes had the highest average income overall.</li><br>
+            <li> Middle-aged customers are the biggest group of bike buyers. Adolescents and older adults buy fewer bikes compared to middle-aged customers.</li><br>
+            <li>Most purchases happen for short commutes (0-1 miles). As commute distance increases, bike purchases decrease significantly.</li><br>
+        </ul> 
+
+</div>
 </body>
 
 </html>

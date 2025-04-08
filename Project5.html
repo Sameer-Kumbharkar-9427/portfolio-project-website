@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project 5</title>
+    <title>Analyzing layoffs to understand workforce reduction trends using MySQL</title>
     <link rel="stylesheet" href="styles.css">
     <script defer src="script.js"></script>
     <!-- Prism.js for Syntax Highlighting -->
@@ -14,9 +14,9 @@
 
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Inter', sans-serif;
             background-color: white;
-            color: #4b0082;
+            color: #000000;
             margin: 0;
             padding: 20px;
         }
@@ -28,6 +28,10 @@
             background: #f0f0ff;
             border-radius: 15px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+            font-weight: 800;
+            color: #484848;
         }
 
         .project-image1 {
@@ -145,7 +149,7 @@
 
 <body>
     <div class="container">
-        <h1>Project 5</h1>
+        <h1>Analyzing layoffs to understand workforce reduction trends using MySQL</h1>
         <div class="project-image1">
         </div>
 
@@ -511,13 +515,29 @@
         </div>
 
 
-        <div class="dropdown-header" onclick="toggleDropdown('dashboard')">
-            <span>Dashboard Build & Story</span> <i>▼</i>
+        <div class="dropdown-header" onclick="toggleDropdown('conclusion')">
+            <span>Conclusion</span> <i>▼</i>
         </div>
-        <div id="dashboard" class="dropdown">
-            <div class="project-image"></div> <!-- Image Placeholder -->
-        </div>
+        <div id="conclusion" class="dropdown">
+            <ul>
+                <li>The dataset reveals fluctuations in layoff numbers over different periods, indicating that layoffs are influenced by various external factors such as economic downturns or industry-specific challenges.</li><br>
+                <li>Certain industries experience higher layoff rates, suggesting that sectors like technology or manufacturing may be more susceptible to workforce reductions during specific times..</li><br>
+                <li>Services like Internet Service, Phone Service, and lack of add-on features are linked to higher churn.</li>
+            </ul>
     </div>
+
+    <div class="dropdown-header" onclick="toggleDropdown('insights')">
+        <span>Key Insights</span> <i>▼</i>
+    </div>
+    <div id="insights" class="dropdown">
+        
+        <ul>
+            <li>Identified specific time frames where layoffs peaked, which could correlate with economic recessions or significant industry disruptions.</li><br>
+            <li>  Larger companies tend to have higher total layoff numbers, but when considering layoffs as a percentage of total workforce, smaller companies might exhibit higher relative layoff rates. </li><br>
+            <li>Some companies have multiple instances of layoffs within the dataset, indicating potential ongoing financial or operational challenges.</li><br>
+        </ul> 
+
+</div>
 </body>
 
 </html>

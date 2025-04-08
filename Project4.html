@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project 4</title>
+    <title>Telecom churn analysis using SQL & Power BI to identify key factors driving customer attrition</title>
     <link rel="stylesheet" href="styles.css">
     <script defer src="script.js"></script>
     <!-- Prism.js for Syntax Highlighting -->
@@ -13,9 +13,9 @@
 
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Inter', sans-serif;
             background-color: white;
-            color: #4b0082;
+            color: #000000;
             margin: 0;
             padding: 20px;
         }
@@ -26,6 +26,10 @@
             background: #f0f0ff;
             border-radius: 15px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            text-align: center;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+            font-weight: 800;
+            color: #484848;
         }
         .project-image1 {
     background-image: url('Images/project4/SQL and powerbi logo.jpg');
@@ -132,7 +136,7 @@
 </head>
 <body>
     <div class="container">
-        <h1>Project 4</h1>
+        <h1>Telecom churn analysis using SQL & Power BI to identify key factors driving customer attrition</h1>
         <div class="project-image1">
     </div>
     
@@ -398,12 +402,29 @@ From db_churn.dbo.stg_churn;
         </div>
         
         
-        <div class="dropdown-header" onclick="toggleDropdown('dashboard')">
-            <span>Dashboard Build & Story</span> <i>▼</i>
+        <div class="dropdown-header" onclick="toggleDropdown('conclusion')">
+            <span>Conclusion</span> <i>▼</i>
         </div>
-        <div id="dashboard" class="dropdown">
-            <div class="project-image"></div> <!-- Image Placeholder -->
-        </div>
+        <div id="conclusion" class="dropdown">
+            <ul>
+                <li>The overall churn rate is 26.99%, which is relatively high and suggests a significant portion of customers are leaving the service.</li><br>
+                <li>Most churn is observed among month-to-month contract holders, older age groups, and customers in certain geographic regions.</li><br>
+                <li>Services like Internet Service, Phone Service, and lack of add-on features are linked to higher churn.</li>
+            </ul>
     </div>
+
+    <div class="dropdown-header" onclick="toggleDropdown('insights')">
+        <span>Key Insights</span> <i>▼</i>
+    </div>
+    <div id="insights" class="dropdown">
+        
+        <ul>
+            <li>States like Jammu & Kashmir, Assam, and Jharkhand have the highest churn rates, possibly due to service quality, pricing, or local competitors.</li><br>
+            <li> Mailed checks and bank withdrawals are linked to higher churn rates. These customers may prefer easier or automated payment options. </li><br>
+            <li>Month-to-month contracts show the highest churn. Locking in customers with longer contracts helps reduce churn.</li><br>
+            <li>Internet and phone service users show over 90% churn, highlighting dissatisfaction or better alternatives elsewhere.</li>
+        </ul> 
+
+</div>
 </body>
 </html>

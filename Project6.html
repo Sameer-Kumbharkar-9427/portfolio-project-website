@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project 6</title>
+    <title>Creating visualization using Power BI showing KPI's of a toy store chain</title>
     <link rel="stylesheet" href="styles.css">
     <script defer src="script.js"></script>
     <!-- Prism.js for Syntax Highlighting -->
@@ -13,9 +13,9 @@
 
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Inter', sans-serif;
             background-color: white;
-            color: #4b0082;
+            color: #000000;
             margin: 0;
             padding: 20px;
         }
@@ -26,6 +26,10 @@
             background: #f0f0ff;
             border-radius: 15px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            text-align: center;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+            font-weight: 800;
+            color: #484848;
         }
         .project-image1 {
     background-image: url('Images/project6/power\ bi\ logo.png');
@@ -132,7 +136,7 @@
 </head>
 <body>
     <div class="container">
-        <h1>Project 6</h1>
+        <h1>Creating visualization using Power BI showing KPI's of a toy store chain</h1>
         <div class="project-image1">
     </div>
     
@@ -232,12 +236,27 @@
         </div>
         
         
-        <div class="dropdown-header" onclick="toggleDropdown('dashboard')">
-            <span>Dashboard Build & Story</span> <i>▼</i>
+        <div class="dropdown-header" onclick="toggleDropdown('conclusion')">
+            <span>Conclusion</span> <i>▼</i>
         </div>
-        <div id="dashboard" class="dropdown">
-            <div class="project-image"></div> <!-- Image Placeholder -->
-        </div>
+        <div id="conclusion" class="dropdown">
+            <ul>
+                <li>The toy store is performing well overall, with healthy profits ($180,445) and revenue ($658,194).</li><br>
+                <li>A high volume of orders (41,830) indicates strong customer interest and market demand.</li><br>
+                <li>Revenue shows seasonal trends, with noticeable spikes and dips across months.</li>
+            </ul>
     </div>
+
+    <div class="dropdown-header" onclick="toggleDropdown('insights')">
+        <span>Key Insights</span> <i>▼</i>
+    </div>
+    <div id="insights" class="dropdown">
+        
+        <ul>
+            <li>Toys and Art & Crafts are the most ordered product categories, showing they're customer favorites.</li><br>
+            <li> Revenue peaked late in 2022, possibly due to seasonal promotions or holidays. </li><br>
+        </ul> 
+
+</div>
 </body>
 </html>

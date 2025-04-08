@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project 2</title>
+    <title>Measuring Digital Marketing KPI's using SQL and Visualizing using Power BI</title>
     <link rel="stylesheet" href="styles.css">
     <script defer src="script.js"></script>
     <!-- Prism.js for Syntax Highlighting -->
@@ -13,9 +13,9 @@
 
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Inter', sans-serif;
             background-color: white;
-            color: #4b0082;
+            color: #000000;
             margin: 0;
             padding: 20px;
         }
@@ -26,6 +26,11 @@
             background: #f0f0ff;
             border-radius: 15px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            text-align: center;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+            font-weight: 800;
+            color: #484848;
+            
         }
         .project-image1 {
     background-image: url('Images/project2/logos.png');
@@ -132,7 +137,7 @@
 </head>
 <body>
     <div class="container">
-        <h1>Project 2</h1>
+        <h1>Measuring Digital Marketing KPI's using SQL and Visualizing using Power BI</h1>
         <div class="project-image1">
     </div>
     
@@ -353,12 +358,29 @@
         </div>
         
         
-        <div class="dropdown-header" onclick="toggleDropdown('dashboard')">
-            <span>Dashboard Build & Story</span> <i>▼</i>
+        <div class="dropdown-header" onclick="toggleDropdown('conclusion')">
+            <span>Conclusion</span> <i>▼</i>
         </div>
-        <div id="dashboard" class="dropdown">
-            <div class="project-image"></div> <!-- Image Placeholder -->
-        </div>
+        <div id="conclusion" class="dropdown">
+            <ul>
+                <li>YouTube Blogger campaign stands out as the most effective in terms of ROMI (Return on Marketing Investment) and Average AOV (Average Order Value). It also contributes the highest revenue among all campaigns.</li><br>
+                <li>Facebook lal campaigns, while having high CAC (Customer Acquisition Cost), perform poorly in ROMI and AOV, making them less cost-effective.</li><br>
+                <li>Google Hot also performs well in terms of both AOV and ROMI, indicating a strong campaign ROI.</li><br>
+                <li>Influencer category, though smaller in volume, delivers the highest ROMI, making it a high-value, low-spend category.</li><br>
+                <li>In contrast, social media campaigns show the highest volume of leads and orders, but suffer from lower ROMI, indicating less efficiency in budget utilization.</li><br>
+            </ul> 
     </div>
+
+    <div class="dropdown-header" onclick="toggleDropdown('insights')">
+        <span>Key Insights</span> <i>▼</i>
+    </div>
+    <div id="insights" class="dropdown">
+        
+        <ul>
+            <li>Focus more on influencer and YouTube-based campaigns for higher ROI.</li><br>
+            <li>Optimize or reconsider budget allocation for low-performing campaigns like Facebook lal</li><br>
+            <li>While social campaigns bring volume, mixing them with high-ROMI campaigns will ensure sustainable growth.</li>
+        </ul> 
+</div>
 </body>
 </html>

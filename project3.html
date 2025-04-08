@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project 3</title>
+    <title>Exploring netflix content strategy using pandas<br>and visualizing using matplotlib and seaborn</title>
     <link rel="stylesheet" href="styles.css">
     <script defer src="script.js"></script>
     <!-- Prism.js for Syntax Highlighting -->
@@ -16,9 +16,9 @@
 
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Inter', sans-serif;
             background-color: white;
-            color: #4b0082;
+            color: #000000;
             margin: 0;
             padding: 20px;
         }
@@ -30,6 +30,10 @@
             background: #f0f0ff;
             border-radius: 15px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+            font-weight: 800;
+            color: #484848;
         }
 
         .project-image1 {
@@ -148,7 +152,7 @@ code {
 
 <body>
     <div class="container">
-        <h1>Project 3</h1>
+        <h1>Exploring netflix content strategy using pandas<br>and visualizing using matplotlib and seaborn</h1>
         <div class="project-image1">
         </div>
 
@@ -509,13 +513,25 @@ code {
         </div>
 
 
-        <div class="dropdown-header" onclick="toggleDropdown('dashboard')">
-            <span>Conclusions</span> <i>▼</i>
+        <div class="dropdown-header" onclick="toggleDropdown('conclusion')">
+            <span>Conclusion</span> <i>▼</i>
         </div>
-        <div id="dashboard" class="dropdown">
-            <div class="project-image"></div> <!-- Image Placeholder -->
-        </div>
+        <div id="conclusion" class="dropdown">
+            <p>Netflix's strategic focus on producing and promoting shows, investing in multilingual content, and optimizing release schedules has been effective in maximizing viewership and catering to a diverse, global audience.</p>
     </div>
+
+    <div class="dropdown-header" onclick="toggleDropdown('insights')">
+        <span>Key Insights</span> <i>▼</i>
+    </div>
+    <div id="insights" class="dropdown">
+        
+        <ul>
+           <li>Shows had more total viewership hours than movies in 2023, indicating a strategic emphasis on series to boost engagement.li</li><br>
+            <li>English-language content dominated viewership, followed by Korean, highlighting the importance of diverse language offerings to cater to a global audience.</li><br>
+            <li>Viewership patterns varied with release dates, suggesting that strategic scheduling can enhance content performance.</li>
+        </ul> 
+
+</div>
 </body>
 
 </html>
