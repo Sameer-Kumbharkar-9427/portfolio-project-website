@@ -162,7 +162,7 @@ code {
             <span>Project Summary</span> <i>▼</i>
         </div>
         <div id="summary" class="dropdown">
-            This project analyzes Netflix's content strategy by examining data on titles released in 2023. The objective is to understand patterns in content type, language distribution, and release timing to gain insights into Netflix's approach to content creation and distribution.
+            Built a data pipeline to fetch all videos and stats from MrBeast's YouTube channel using the YouTube Data API. Processed the data with Python, converted it into a dataframe using Pandas, and uploaded it into an AWS RDS MySQL database for further querying and exploration.
         </div>
 
         <div class="dropdown-header" onclick="toggleDropdown('environment')">
@@ -170,346 +170,291 @@ code {
         </div>
         <div id="environment" class="dropdown">
             <ul>
-                <li>Jupyter Notebook</li>
-                <li>Pandas: Used for data manipulation and analysis.</li>
-                <li>Matplotlib and Seaborn: Used for creating interactive visualizations.</li>
+                <li>Python</li>
+
+                <li>YouTube Data API</li>
+                    
+                <li>Pandas</li>
+                    
+                <li>AWS RDS (MySQL)</li>
+                    
+                <li>MySQL WOrkbench</li>
+                    
+                <li>SQLAlchemy </li>
+                    
+                <li>Jupyter Notebook </li>
             </ul>
         </div>
 
         <div class="dropdown-header" onclick="toggleDropdown('steps')">
-            <span>Download Dataset</span> <i>▼</i>
+            <span>API & Data Acess</span> <i>▼</i>
         </div>
-        <div id="steps" class="dropdown">OTT content strategy dataset <a
-                href="https://github.com/Sameer-Kumbharkar-9427/Portfolio-Projects/tree/main/OTT%20content%20strategy%20analysis">dataset</a>
+        <div id="environment" class="dropdown">
+            <ul>
+                <li>Connected to the YouTube Data API using a developer</li>
+
+                <li>Pulled video metadata such as:</li>
+                    
+                    <li>Title</li>
+                    
+                    <li>Publish Date</li>
+                    
+                    <li>View Count</li>
+                    
+                    <li>Like Count</li>
+                    
+                    <li>Comment Count</li>
+                    
+                <li>Paginated through all videos using nextPageToken.</li>
+            </ul>
         </div>
 
         <div class="dropdown-header" onclick="toggleDropdown('data-source')">
             <span>Data Description</span> <i>▼</i>
         </div>
         <div id="data-source" class="dropdown">
-            <h3>The dataset includes the following key columns:</h3>
             <ul>
-                <li>Title: Name of the content.</li>
-                <li>Release Date: Date when the content was released.<li>
-                <li>Language Indicator: Primary language of the content.</li>  
-                <li>Content Type: Specifies whether the content is a 'Show' or 'Movie'.</li>  
-                <li>Availability: Indicates if the content is currently available.</li>
-                <li>Hours Viewed: Total viewership hours accumulated.</li>
+                All videos extracted from MrBeast's channel.
+
+                <li>Key columns:</li>
+
+                    <li>video_id</li>
+
+                    <li>title</li>
+
+                    <li>publishedAt</li>
+
+                    <li>viewCount</li>
+
+                    <li>likeCount</li>
+
+                    <li>commentCount</li>
+
+                    <li>duration</li>
             </ul>
             
         </div>
 
         <div class="dropdown-header" onclick="toggleDropdown('data-checks')">
-            <span>Data Exploration & Visualization</span> <i>▼</i>
+            <span>Data Storage and Upload</span> <i>▼</i>
         </div>
 
         <div id="data-checks" class="dropdown">
 
-            <!-- Code Block: Create Database -->
+            <div class="dropdown-header sub-dropdown-header" onclick="toggleDropdown('revenue-analysis')">
+                <span>Pulling Data using API</span> <i>▼</i>
+            </div>
+
+            <div id="revenue-analysis" class="sub-dropdown">
             <pre><code class="language-sql">
-    import matplotlib.pyplot as plt
-    import seaborn as sns
     import pandas as pd
-                
-    %matplotlib inline
-    sns.set_theme(style="whitegrid") 
-    </code></pre>
-    <div class="project-image" style="background-image: url('Images/netflix_ott/1.png');background-repeat: no-repeat;background-size: contain;background-position: center;
-    width: 100%;height: 250px;"></div>
+    import requests
+    import time
 
-        <pre><code class="language-sql">
-    data = pd.read_csv(r'D:\Portfolio Project\Project3 - OTT content strategy analysis(python)\netflix_content_2023.csv')
-    data.head()    
-    </code></pre>
-                
-        <pre><code class="language-sql">
-    # cleaning the "Hours Viewed" colum to prepare for analysis
-    data['Hours Viewed'] = data['Hours Viewed'].replace(',','', regex=True).astype(float)
-    data[['Title', 'Hours Viewed']].head()
-    </code></pre>
+    API_KEY = 'xxxxxxx'
+    CHANNEL_ID = 'xxxxx'
 
-    <div class="project-image" style="background-image: url('Images/netflix_ott/2.png');background-repeat: no-repeat;background-size: contain;background-position: center;
-    width: 100%;height: 250px;"></div>
-                
-        <pre><code class="language-sql">
-    # aggregate viewership hours by content type
-    content_type_viewership = data.groupby('Content Type')['Hours Viewed'].sum()
-    </code></pre>
-                
-        <pre><code class="language-sql">
-    sns.barplot(
-        x=content_type_viewership.index ,
-        y=content_type_viewership.values,
-        hue=content_type_viewership.index,  
-        palette=['skyblue', 'salmon'],
-        errorbar=None,
-        legend=False
-    )
-            
-    # Add labels and title
-    plt.title("Total Viewership Hours by Content Type (2023)")
-    plt.xlabel("Content Type")
-    plt.ylabel("Total Hours Viewed (in billions)")
-            
-    # Show plot
-    plt.show()
-    </code></pre>
+    # Getting uploads playlist ID
 
-    <div class="project-image" style="background-image: url('Images/netflix_ott/3.png');background-repeat: no-repeat;background-size: contain;background-position: center;
-    width: 100%;height: 500px;"></div>
+    channel_url = 'https://www.googleapis.com/youtube/v3/channels'
+    channel_params = {
+    'part': 'contentDetails',
+    'id': CHANNEL_ID,
+    'key': API_KEY
+    }
+                </code></pre>
+                <pre><code class="language-sql">
+    channel_res = requests.get(channel_url, params=channel_params).json()
+                </code></pre>
+                <pre><code class="language-sql">
+    uploads_playlist_id = channel_res['items'][0]['contentDetails']['relatedPlaylists']['uploads']
+                </code></pre>
+                <pre><code class="language-sql">
+    # getting video id's using playlistItems endpoint and fetching video title and video date
 
-            
-            <pre><code class="language-sql"> 
-    # aggregate viewership hours by language
+    video_ids = []
+    next_page_token = None
 
-    language_viewership = data.groupby('Language Indicator')['Hours Viewed'].sum().sort_values(ascending=False)       
-    sns.barplot(
-        x=language_viewership.index,
-        y=language_viewership.values,
-        hue=language_viewership.index,
-        palette=['salmon'],
-        errorbar=None
-                
-                    
-    )
-    plt.title('Total Viewership Hours by Language')
-    plt.xlabel('Languages')
-    plt.ylabel('Hours Viewed (in billions)')
-                
-    plt.show()
-            </code></pre>
+    while True:
+    playlist_url = 'https://www.googleapis.com/youtube/v3/playlistItems'
+    playlist_params = {
+        'part' : 'snippet',
+        'playlistId' : uploads_playlist_id,
+        'maxResults' : 50,
+        'key' : API_KEY,
+        'pageToken' : next_page_token 
+    }
 
-            <div class="project-image" style="background-image: url('Images/netflix_ott/4.png');background-repeat: no-repeat;background-size: contain;background-position: center;width: 100%;height: 500px;"></div>
+    playlist_res = requests.get(playlist_url, params=playlist_params).json()
+    for item in playlist_res.get('items',[]):
+        video_ids.append({
+            'video_id': item['snippet']['resourceId']['videoId'],
+            'video_title': item['snippet']['title'],
+            'upload_date': item['snippet']['publishedAt'].split('T')[0]
+        })
 
-            <pre><code class="language-sql">        
-    # convert the "Release Date" column to datetime format and extract the month
+    next_page_token = playlist_res.get('nextPageToken')
+    if not next_page_token:
+        break
 
-    data['Release Date'] = pd.to_datetime(data['Release Date'])
-    data['Release Month'] = data['Release Date'].dt.month
-            </code></pre>
-            <pre><code class="language-sql">        
-    # aggregate viewership hours by "Release Month"
-
-    monthly_viewership = data.groupby('Release Month')['Hours Viewed'].sum()
-            </code></pre>
-            <pre><code class="language-sql">        
-    sns.lineplot(
-        x = monthly_viewership.index,
-        y = monthly_viewership.values, 
-        marker='o', 
-        legend=False
-    )
-    plt.xticks(ticks=range(1,13))
-    plt.title('Month Wise Viewership')
-    plt.xlabel('Month')
-    plt.ylabel('Hours(in billions)')
-                
-    plt.show()
-            </code></pre>
-
-            <div class="project-image" style="background-image: url('Images/netflix_ott/5.png');background-repeat: no-repeat;background-size: contain;background-position: center;width: 100%;height: 500px;"></div>
-
-            <pre><code class="language-sql">        
-    top5_titles = data.sort_values(by='Hours Viewed', ascending=False).head()
-    top5_titles
-            </code></pre>
-
-            <div class="project-image" style="background-image: url('Images/netflix_ott/6.png');background-repeat: no-repeat;background-size: contain;background-position: center;width: 100%;height: 250px;"></div>
-
-
-            <pre><code class="language-sql">        
-    # aggregate viewership hours by content type and release month
-
-    monthly_viewership_by_type = data.pivot_table(index='Release Month',
-                                                    columns='Content Type',
-                                                    values='Hours Viewed',
-                                                    aggfunc='sum')
-    monthly_viewership_by_type
-            </code></pre>
-
-            <div class="project-image" style="background-image: url('Images/netflix_ott/7.png');background-repeat: no-repeat;background-size: contain;background-position: center;width: 100%;height: 500px;"></div>
-
-            <pre><code class="language-sql">        
-    sns.lineplot(x=monthly_viewership_by_type.index, y=monthly_viewership_by_type['Movie'], label='Movie', marker='o')
-    sns.lineplot(x=monthly_viewership_by_type.index, y=monthly_viewership_by_type['Show'], label='Show', marker='o')
-                
-    plt.xticks(ticks=range(1,13))
-    plt.xlabel("Month")
-    plt.ylabel("Total Hours Viewed (in billions)")
-    plt.title("Viewership Trends for Movies and Shows (2023)")
-                
-    plt.show()
-            </code></pre>
-
-            <div class="project-image" style="background-image: url('Images/netflix_ott/8.png');background-repeat: no-repeat;background-size: contain;background-position: center;width: 100%;height: 500px;"></div>
-
-
-            <pre><code class="language-sql">        
-    # define seasons based on release months
-
-    def get_season(month):
-        if month in [11, 12, 1]:
-            return 'Winter'
-        elif month in [2, 3]:
-            return 'Spring'
-        elif month in [4, 5, 6,7]:
-            return 'Summer'
-        else:
-            return 'Rainy'
-                
-    # apply the season categorization to the dataset
-    data['Release Season'] = data['Release Month'].apply(get_season)
-                
-    # aggregate viewership hours by release season
-    seasonal_viewership = data.groupby('Release Season')['Hours Viewed'].sum()
-                
-            </code></pre>
-            <pre><code class="language-sql">        
-    season_order = ['Spring', 'Summer', 'Rainy', 'Winter']
-    seasonal_viewership = seasonal_viewership.reindex(season_order)
-            </code></pre>
-            <pre><code class="language-sql">        
-    sns.barplot(
-        x=seasonal_viewership.index,
-        y=seasonal_viewership.values,
-        hue = seasonal_viewership.index,
-        palette=['salmon'],
-        errorbar=None    
-    )
-    plt.title('Total Viewership Hours by Release Season (2023)')
-    plt.xlabel('Season')
-    plt.ylabel('Total Hours Viewed (in billions)')
-    plt.show()
-            </code></pre>
-
-            <div class="project-image" style="background-image: url('Images/netflix_ott/9.png');background-repeat: no-repeat;background-size: contain;background-position: center; width: 100%;height: 500px;"></div>
-
-
-            <pre><code class="language-sql">        
-    monthly_releases = data['Release Month'].value_counts()
-
-    monthly_viewership = data.groupby('Release Month')['Hours Viewed'].sum()
-            </code></pre>
-            <pre><code class="language-sql">        
-    # Create figure
-    fig, ax1 = plt.subplots(figsize=(12, 6))
-                
-    # First line plot on ax1 (primary y-axis)
-    sns.lineplot(
-        x=monthly_releases.index, 
-        y=monthly_releases.values, 
-        color='skyblue', 
-        marker='o', 
-        ax=ax1, 
-        label="Number of Releases",
-                    
-    )
-                
-    # Create second Y-axis for the second line plot
-    ax2 = ax1.twinx()
-                
-    # Second line plot on ax2 (secondary y-axis)
-    sns.lineplot(
-        x=monthly_viewership.index, 
-        y=monthly_viewership.values, 
-        color='salmon', 
-        marker='o', 
-        ax=ax2, 
-        label="Viewership Hours",
-                    
-    )
-                
-    # Set labels and title
-    ax1.set_xlabel("Month")
-    ax1.set_ylabel("Number of Releases", color='skyblue')
-    ax2.set_ylabel("Total Hours Viewed (in billions)", color='salmon')
-                
-    ax1.grid(False)
-    # ax2.grid(False)
-                
-    plt.title("Monthly Release and Viewership Hours (2023)")
-                
-    # Show the plot
-    plt.show()
-            </code></pre>
-
-            <div class="project-image" style="background-image: url('Images/netflix_ott/10.png');background-repeat: no-repeat;background-size: contain;background-position: center;width: 100%;height: 500px;"></div>
-
-            <pre><code class="language-sql">        
-    data['Release Day'] = data['Release Date'].dt.day_name()
-
-    weekday_releases = data['Release Day'].value_counts().reindex(
-        ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
-    )
-                
-    # aggregate viewership hours by day of the week
-    weekday_viewership = data.groupby('Release Day')['Hours Viewed'].sum().reindex(
-        ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
-    )
-            </code></pre>
-            <pre><code class="language-sql">        
-
-    fig, ax1 = plt.subplots(figsize=(12, 6))
-
-
-    sns.barplot(
-        x=weekday_releases.index,
-        y=weekday_releases.values,
-        color='skyblue',
-        alpha=0.6,
-        ax=ax1
-    )
-                
-    ax2 = ax1.twinx()
-                
-                
-    sns.lineplot(
-        x=weekday_viewership.index,
-        y=weekday_viewership.values,
-        color='salmon',
-        marker='o',
-        ax=ax2
-    )
-                
-    ax1.set_ylabel("Number of Releases", color='skyblue')
-    ax2.set_ylabel("Total Hours Viewed (in billions)", color='salmon')
-    ax1.set_xlabel("Days of the Week")
-    plt.title("Weekly Release Patterns and Viewership Hours (2023)")
-                
-                
-    ax1.grid(False)
-    ax2.grid(False)
-                
-                
-    plt.show()
-            </code></pre>
-
-            <div class="project-image" style="background-image: url('Images/netflix_ott/11.png');background-repeat: no-repeat;background-size: contain;background-position: center; width: 100%;height: 500px;"></div>
-
-            <pre><code class="language-sql">        
-    # define significant holidays and events in 2023
-    important_dates = [
-        '2023-01-01',  # new year's day
-        '2023-02-14',  # valentine's ay
-        '2023-08-15',  # independence day
-        '2023-12-25'   # christmas day
-    ]
+    time.sleep(1)
+        
+                </code></pre>
+                <pre><code class="language-sql">
+    # fetching stats through videos endpoint by using video id's that we got in previous step. fetching stats for 50 videos atime in batches
     
-    # convert to datetime
-    important_dates = pd.to_datetime(important_dates)
-                
-    # check for content releases close to these significant holidays (within a 3-day window)
-    holiday_releases = data[data['Release Date'].apply(
-        lambda x: any((x - date).days in range(-3, 4) for date in important_dates)
-    )]
-                
-    # aggregate viewership hours for releases near significant holidays
-    holiday_viewership = holiday_releases.groupby('Release Date')['Hours Viewed'].sum()
-                
-    holiday_releases[['Title', 'Release Date', 'Hours Viewed']]
-            </code></pre>
+    df_rows = []
+    for i in range(0, len(video_ids), 50):
+        batch = video_ids[i:i+50]
+        ids = ','.join([v['video_id'] for v in batch])
+                    
+        stats_url = 'https://www.googleapis.com/youtube/v3/videos'
+        stats_params = {
+            'part': 'statistics,contentDetails',
+            'id': ids,
+            'key': API_KEY
+        }
+                    
+    stats_res = requests.get(stats_url, params=stats_params).json()
+                    
+    for item in stats_res.get('items', []):
+        vid = next((v for v in batch if v['video_id'] == item['id']), None)
+        if not vid:
+            continue
+                    
+        # Get stats
+        stats = item.get('statistics', {})
+        view_count = stats.get('viewCount', 0)
+        like_count = stats.get('likeCount', 0)
+        comment_count = stats.get('commentCount', 0)
 
-            <div class="project-image" style="background-image: url('Images/netflix_ott/12.png');background-repeat: no-repeat;background-size: contain;background-position: center;width: 100%;height: 500px;"></div>
+    # stacking all the data fetched by using append
+                            
+        df_rows.append({
+            'video_id': vid['video_id'],
+            'video_title': vid['video_title'],
+            'upload_date': vid['upload_date'],
+            'view_count': view_count,
+            'like_count': like_count,
+            'comment_count': comment_count,
+                                
+        })
+                    
+    time.sleep(1)
+                </code></pre>
+                <pre><code class="language-sql">
+    # df_rows into a dataframe
+
+    df = pd.DataFrame(df_rows)
+    df.head()
+                </code></pre>
+                <div class="project-image" style="background-image: url('Images/mrbeast_youtubeapi/1.png');background-repeat: no-repeat;background-size: contain;background-position: center;
+                width: 100%;height: 250px;"></div>
+                <pre><code class="language-sql">
+    # saving the dataframe into a csv file
+
+    df.to_csv('mrbeast.csv', index=False)
+                </code></pre>
+                
+</div>
+
+<div class="dropdown-header sub-dropdown-header" onclick="toggleDropdown('database')">
+    <span>Setting up MySQL Database in AWS RDS</span> <i>▼</i>
+</div>
+
+<div id="database" class="sub-dropdown">
+    <ul>
+        <li>Go to https://aws.amazon.com and sign in with AWS account. </li>
+            <li>Navigate to the RDS service via the search bar.</li>
+            <li>Click on “Create database”.</li>
+            <li>Choose Standard Create.</li>
+            <li>Under Engine options, select MySQL</li>
+            <li>Give the database a name</li>
+            <li>Set the main user (e.g., admin)</li>
+            <li>Create and confirm a password. </li>
+            <li>Choose a free-tier eligible size</li>
+            <li>Choose Default VPC </li>
+            <li>Set Public Access=Yes </li>
+            <li>Click Create Database.</li>
+
+            <li>Go to EC2 > Security Groups</li>
+            <li>Find the security group associated with your RDS instance.</li>
+            <li>Edit Inbound Rules to allow MySQL/Aurora (port 3306) from: IP address</li>
+
+        </li>
+    </ul>
+    </div>
+
+    <div class="dropdown-header sub-dropdown-header" onclick="toggleDropdown('upload')">
+        <span>Uploading File to RDS</span> <i>▼</i>
+    </div>
+    <div id="upload" class="sub-dropdown">
+        <pre><code class="language-sql">
+    import pandas as pd
+    from sqlalchemy import create_engine
+        </code></pre>
+        <pre><code class="language-sql">
+    # Read CSV
+    df = pd.read_csv("mrbeast.csv")
+    df.head()
+        </code></pre>
+        <div class="project-image" style="background-image: url('Images/mrbeast_youtubeapi/2.png');background-repeat: no-repeat;background-size: contain;background-position: center;
+                width: 100%;height: 250px;"></div>
+        <pre><code class="language-sql">
+    # Define connection parameters
+    host_name = "mysql.c7wu4628yiku.eu-north-1.rds.amazonaws.com"
+    db_name = "project"
+    port = 3306
+    username = "admin"
+    password = "sameer1111"
+        </code></pre>
+        <pre><code class="language-sql">
+    # Create SQLAlchemy engine using pymysql
+    # engine  = dialect+driver://username:password@host:port/database
+
+    engine = create_engine(f"mysql+pymysql://{username}:{password}@{host_name}:{port}/{db_name}")
+        </code></pre>
+        <pre><code class="language-sql">
+    # Test the connection and upload the dataframe
+    try:
+        with engine.connect() as connection:
+            print("Connected to MySQL!")
+            
+            # write the DataFrame to a table
+            df.to_sql('mrbeast_data', con=connection, if_exists='replace', index=False)
+            print("DataFrame written to 'mrbeast_data' table!")
+            
+    except Exception as e:
+        print("Error:", e)
+        </code></pre>
+        <pre><code class="language-sql">
+    connection.close()     
+    engine.dispose()   # cleans up the engine and releases any pooled resources
+    print("Connection closed.")
+        </code></pre>
+        </div>  
+        
+        <div class="dropdown-header sub-dropdown-header" onclick="toggleDropdown('queries')">
+            <span>Setting up MySQL Database in AWS RDS</span> <i>▼</i>
+        </div>
+        
+        <div id="queries" class="sub-dropdown">
+            <pre><code class="language-sql">
+    select count(*)
+    from mrbeast_data;
+            </code></pre>
+            <div class="project-image" style="background-image: url('Images/mrbeast_youtubeapi/3.png');background-repeat: no-repeat;background-size: contain;background-position: center;
+                width: 100%;height: 250px;"></div>
+
+            <pre><code class="language-sql">
+    select *
+    from mrbeast_data
+    order by view_count desc
+    limit 10;
+            </code></pre>
+            <div class="project-image" style="background-image: url('Images/mrbeast_youtubeapi/4.png');background-repeat: no-repeat;background-size: contain;background-position: center;
+                width: 100%;height: 250px;"></div>
+            </div>
 
         </div>
 
@@ -518,21 +463,9 @@ code {
             <span>Conclusion</span> <i>▼</i>
         </div>
         <div id="conclusion" class="dropdown">
-            <p>Netflix's strategic focus on producing and promoting shows, investing in multilingual content, and optimizing release schedules has been effective in maximizing viewership and catering to a diverse, global audience.</p>
+            <p>I successfully built a scalable data pipeline using Python and AWS RDS to extract and store YouTube channel data. Demonstrated proficiency in API interaction, data structuring, cloud database setup, and SQL querying. This project sets the foundation for future analysis or dashboard creation based on live YouTube data streams.</p>
     </div>
 
-    <div class="dropdown-header" onclick="toggleDropdown('insights')">
-        <span>Key Insights</span> <i>▼</i>
-    </div>
-    <div id="insights" class="dropdown">
-        
-        <ul>
-           <li>Shows had more total viewership hours than movies in 2023, indicating a strategic emphasis on series to boost engagement.li</li><br>
-            <li>English-language content dominated viewership, followed by Korean, highlighting the importance of diverse language offerings to cater to a global audience.</li><br>
-            <li>Viewership patterns varied with release dates, suggesting that strategic scheduling can enhance content performance.</li>
-        </ul> 
-
-</div>
 </body>
 
 </html>
