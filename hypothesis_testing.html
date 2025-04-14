@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exploring netflix content strategy using pandas<br>and visualizing using matplotlib and seaborn</title>
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="script.js"></script>
+    <!-- Prism.js for Syntax Highlighting -->
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css"> -->
+     <!-- USE THIS LIGHT THEME INSTEAD -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-sql.min.js"></script>
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #1a0933 0%, #2a1a5e 100%);
+            color: #000000;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1275px;
+            margin: auto;
+            padding: 20px;
+            background: #f0f0ff;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: left;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+            font-weight: 800;
+            color: #484848;
+        }
+
+        .project-image1 {
+            background-image: url('Images/netflix_ott/logo.png');
+            background-size: contain;
+            /* Ensures the full image is visible without cropping */
+            background-repeat: no-repeat;
+            /* Prevents image from repeating */
+            background-position: center;
+            /* Centers the image */
+            width: 100%;
+            /* Adjusts to the container's width */
+            height: 350px;
+            /* Set fixed height */
+            background-color: white;
+            /* Fills remaining space with white */
+        }
+
+        .dropdown {
+            display: none;
+            padding: 10px;
+            background: #ffffff;
+            margin-top: 5px;
+            border-left: 4px solid #4b0082;
+            border-radius: 4px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .dropdown-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            background: #4b0082;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .dropdown-header span {
+            font-size: 18px;
+        }
+
+        .dropdown-header i {
+            font-size: 20px;
+        }
+
+        pre {
+    background: white; /* White background like Jupyter */
+    color: #333; /* Dark readable text */
+    padding: 5px;
+    border-radius: 5px;
+    overflow-x: auto;
+    font-size: 14px;
+    border: 1px solid #ddd; /* Soft border for separation */
+}
+
+code {
+    font-family: 'Courier New', monospace;
+    color: #000; /* Plain dark text */
+}
+
+
+        .sub-dropdown {
+            display: none;
+            padding: 10px;
+            margin-left: 20px;
+            background: #e9ecef;
+            border-left: 3px solid #6c757d;
+            border-radius: 5px;
+        }
+
+        .sub-dropdown-header {
+            background: #6c757d;
+            color: white;
+            padding: 8px;
+            margin-top: 5px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .sub-dropdown-header:hover {
+            background: #5a6268;
+        }
+
+        .project-image {
+            width: 100%;
+            height: 700px;
+            border-radius: 8px;
+            background-size: cover;
+            background-position: center;
+        }
+    </style>
+    <script>
+        function toggleDropdown(id) {
+            let element = document.getElementById(id);
+            let isVisible = element.style.display === 'block';
+
+            // Hide all dropdowns before opening a new one (optional)
+            // document.querySelectorAll('.dropdown').forEach(dropdown => {
+            //     dropdown.style.display = 'none';
+            // });
+
+            // Toggle the clicked dropdown
+            element.style.display = isVisible ? 'none' : 'block';
+
+            // Scroll into view only if opening
+            if (!isVisible) {
+                element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Exploring netflix content strategy using pandas, matplotlib and seaborn</h1>
+        <div class="project-image1">
+        </div>
+
+
+
+        <div class="dropdown-header" onclick="toggleDropdown('summary')">
+            <span>Project Summary</span> <i>▼</i>
+        </div>
+        <div id="summary" class="dropdown">
+            This project compares the performance of two website themes - Light and Dark by using hypothesis testing.By analyzing user behavior metrics, the goal was to determine if one theme leads to better user engagement than the other.
+        </div>
+
+        <div class="dropdown-header" onclick="toggleDropdown('environment')">
+            <span>Tools & Technologies Used</span> <i>▼</i>
+        </div>
+        <div id="environment" class="dropdown">
+            <ul>
+                <li>Jupyter Notebook</li>
+                <li>Pandas for data manipulation</li>
+                <li>SciPy for statistical testing</li>
+            </ul>
+        </div>
+
+        <div class="dropdown-header" onclick="toggleDropdown('steps')">
+            <span>Download Dataset</span> <i>▼</i>
+        </div>
+        <div id="steps" class="dropdown">OTT content strategy dataset <a
+                href="https://github.com/Sameer-Kumbharkar-9427/Portfolio-Projects/tree/main/OTT%20content%20strategy%20analysis">dataset</a>
+        </div>
+
+        <div class="dropdown-header" onclick="toggleDropdown('data-source')">
+            <span>Data Description</span> <i>▼</i>
+        </div>
+        <div id="data-source" class="dropdown">
+            <h3>The dataset includes 1,000 records with the following columns:</h3>
+            <ul>
+                <li>Theme: Indicates whether the user saw the Light or Dark theme.</li>
+                <li>Click Through Rate: The percentage of users who clicked on a link.</li>
+                <li>Conversion Rate: The percentage of users who completed a desired action.</li>  
+                <li>Bounce Rate: The percentage of users who left the site after viewing only one page.</li>  
+                <li>Scroll Depth: How far users scrolled down the page.</li>
+                <li>Age: Age of the users</li>
+                <li>Location: Geographical location of the user.</li>
+                <li>Session Duration: Time spent on the website during a session.</li>
+                <li>Purchases: Whether the user made a purchase.</li>
+                <li>Added_to_Cart: Whether the user added items to the cart.</li>
+            </ul>
+            
+        </div>
+
+        <div class="dropdown-header" onclick="toggleDropdown('data-checks')">
+            <span>Data Exploration & Hypothesis Testing</span> <i>▼</i>
+        </div>
+
+        <div id="data-checks" class="dropdown">
+
+            <!-- Code Block: Create Database -->
+            <pre><code class="language-sql">
+    import pandas as pd
+    from scipy.stats import ttest_ind
+    from scipy.stats import levene
+    </code></pre>
+
+        <pre><code class="language-sql">
+    df = pd.read_csv(r'D:\Downloads\website_ab_test.csv')
+    df.head()    
+    </code></pre>
+    <div class="project-image" style="background-image: url('Images/hypothesis_testing/1.png');background-repeat: no-repeat;background-size: contain;background-position: center;
+    width: 100%;height: 250px;"></div>
+                
+        <pre><code class="language-sql">
+    # dataset summary
+    summary = {
+        'number of records': df.shape[0],
+        'number of columns': df.shape[1],
+        'missing values': df.isnull().sum(),
+        'statistical summary': df.describe()
+    }
+            
+    summary
+    </code></pre>
+
+    <div class="project-image" style="background-image: url('Images/hypothesis_testing/2.png');background-repeat: no-repeat;background-size: contain;background-position: center;
+    width: 100%;height: 550px;"></div>
+                
+        <pre><code class="language-sql">
+    # grouping data by theme and calculating mean values for the metrics
+    theme_performance = df.groupby('Theme').mean(numeric_only=True)
+            
+    #sorting the grouping by conversion rate for better comparison
+    theme_performance_sorted = theme_performance.sort_values(by='Conversion Rate', ascending=False)
+            
+    theme_performance_sorted
+    </code></pre>
+    <div class="project-image" style="background-image: url('Images/hypothesis_testing/3.png');background-repeat: no-repeat;background-size: contain;background-position: center;
+    width: 100%;height: 200px;"></div>
+
+<pre><code class="language-sql">
+    # The main objective was to determine if there's a significant difference in user engagement between the two themes.
+    <li> # Null Hypothesis (H0): There is no difference in user engagement between Light and Dark themes.</li>
+    <li># Alternative Hypothesis (H1): There is a significant difference in user engagement between Light and Dark themes.</li>
+    </code></pre>
+                
+        <pre><code class="language-sql">
+    # significance level(alpha) = 0.05
+
+    # extracting conversion rates for both themes
+    conversion_rate_light = df[df['Theme'] == 'Light Theme']['Conversion Rate']
+    conversion_rate_dark = df[df['Theme'] == 'Dark Theme']['Conversion Rate']
+    </code></pre>
+
+   
+            <pre><code class="language-sql"> 
+    # performing levene's test to check whether the two groups have equal variances
+
+    stat_cr, p_cr = levene(conversion_rate_light, conversion_rate_dark)
+                
+    stat_cr,p_cr
+            </code></pre>
+
+            <div class="project-image" style="background-image: url('Images/hypothesis_testing/4.png');background-repeat: no-repeat;background-size: contain;background-position: center;width: 100%;height: 50px;"></div>
+
+            <pre><code class="language-sql">        
+    # perform a two-sample t-test
+
+    t_stat_cr, p_value_cr = ttest_ind(conversion_rate_light, conversion_rate_dark, equal_var=True)
+                
+    t_stat_cr, p_value_cr
+            </code></pre>
+            <div class="project-image" style="background-image: url('Images/hypothesis_testing/5.png');background-repeat: no-repeat;background-size: contain;background-position: center;width: 100%;height: 50px;"></div>
+            <pre><code class="language-sql">        
+    # extracting click through rat for both themes
+
+    click_through_rate_light = df[df['Theme'] == 'Light Theme' ]['Click Through Rate']
+    click_through_rate_dark = df[df['Theme'] == 'Dark Theme']['Click Through Rate']
+            </code></pre>
+            <pre><code class="language-sql">        
+    # performing levene's test to check whether the two groups have equal variances
+
+    stat_ctr, p_ctr = levene(click_through_rate_light, click_through_rate_dark)
+                
+    stat,p
+            </code></pre>
+
+            <div class="project-image" style="background-image: url('Images/hypothesis_testing/6.png');background-repeat: no-repeat;background-size: contain;background-position: center;width: 100%;height: 50px;"></div>
+
+            <pre><code class="language-sql">        
+    # perform a two-sample t-test
+
+    t_stat_ctr, p_value_ctr = ttest_ind(click_through_rate_light, click_through_rate_dark, equal_var=True)
+                
+    t_stat_ctr, p_value_ctr
+            </code></pre>
+
+            <div class="project-image" style="background-image: url('Images/hypothesis_testing/7.png');background-repeat: no-repeat;background-size: contain;background-position: center;width: 100%;height: 50px;"></div>
+
+            <pre><code class="language-sql">        
+    # extracting bounce rates for both themes
+    bounce_rate_light = df[df['Theme'] == 'Light Theme']['Bounce Rate']
+    bounce_rate_dark = df[df['Theme'] == 'Dark Theme']['Bounce Rate']
+            </code></pre>
+
+            
+
+            <pre><code class="language-sql">        
+    # performing levenes test to determine equal variance
+
+    stat_br, p_br = levene(bounce_rate_light, bounce_rate_dark)
+                
+    stat_br,p_br
+            </code></pre>
+
+            <div class="project-image" style="background-image: url('Images/hypothesis_testing/8.png');background-repeat: no-repeat;background-size: contain;background-position: center;width: 100%;height: 50px;"></div>
+
+
+            <pre><code class="language-sql">        
+    # perform a two-sample t-test
+
+    t_stat_br, p_value_br = ttest_ind(bounce_rate_light, bounce_rate_dark, equal_var=True)
+                
+    t_stat_br, p_value_br
+                
+            </code></pre>
+            <div class="project-image" style="background-image: url('Images/hypothesis_testing/9.png');background-repeat: no-repeat;background-size: contain;background-position: center;width: 100%;height: 50px;"></div>
+
+            <pre><code class="language-sql">        
+    # extracting scroll depths for both themes
+
+    scroll_depth_light = df[df['Theme'] == 'Light Theme']['Scroll_Depth']
+    scroll_depth_dark = df[df['Theme'] == 'Dark Theme']['Scroll_Depth']
+            </code></pre>
+            <pre><code class="language-sql">        
+    # performing levenes test to determine equal variance
+
+    stat_sd, p_sd = levene(scroll_depth_light, scroll_depth_dark)
+                
+    stat_sd,p_sd
+            </code></pre>
+
+            <div class="project-image" style="background-image: url('Images/hypothesis_testing/10.png');background-repeat: no-repeat;background-size: contain;background-position: center; width: 100%;height: 50px;"></div>
+
+
+            <pre><code class="language-sql">        
+    # perform a two-sample t-test
+
+    t_stat_sd, p_value_sd = ttest_ind(scroll_depth_light, scroll_depth_dark, equal_var=True)
+                
+    t_stat_sd, p_value_sd
+            </code></pre>
+            <div class="project-image" style="background-image: url('Images/hypothesis_testing/11.png');background-repeat: no-repeat;background-size: contain;background-position: center;width: 100%;height: 50px;"></div>
+
+            <pre><code class="language-sql">        
+    # creating a table for comparison
+    comparison_table = pd.DataFrame({
+        'Metric': ['Click Through Rate', 'Conversion Rate', 'Bounce Rate', 'Scroll Depth'],
+        'T-Statistic': [t_stat_ctr, t_stat_cr, t_stat_br, t_stat_sd],
+        'P-Value': [p_value_ctr, p_value_cr, p_value_br, p_value_sd]
+    })
+                
+    comparison_table
+            </code></pre>
+
+            <div class="project-image" style="background-image: url('Images/hypothesis_testing/12.png');background-repeat: no-repeat;background-size: contain;background-position: center;width: 100%;height: 250px;"></div>
+
+        </div>
+
+
+        <div class="dropdown-header" onclick="toggleDropdown('conclusion')">
+            <span>Conclusion</span> <i>▼</i>
+        </div>
+        <div id="conclusion" class="dropdown">
+            <p>The analysis revealed that the Dark Theme slightly outperforms the Light Theme in terms of Click Through Rate. However, for other metrics like Conversion Rate, Bounce Rate, and Scroll Depth, there was no significant difference between the two themes..</p>
+    </div>
+
+</body>
+
+</html>
