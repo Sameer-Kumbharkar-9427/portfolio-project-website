@@ -7,314 +7,72 @@
     <link rel="stylesheet" href="styles.css">
     <!-- <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500&family=Montserrat:wght@400;600&display=swap" rel="stylesheet"> -->
     <script defer src="script.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script> -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
-    <style>
-        /* *{
-            box-sizing: border-box;
-        }
-         */
-        html {
-            scroll-behavior: smooth;
-        }
-        body {
-            margin: 2px;
-            font-family: 'Montserrat',Arial, Helvetica, sans-serif, sans-serif;
-            background: linear-gradient(135deg, #1a0933 0%, #2a1a5e 100%);
-            color: #e0e0ff;
-            transition: background 0.3s, color 0.3s;
-        
-        }
-        .dark-mode {
-            background: linear-gradient(135deg, #0d0620 0%, #1c1447 100%);
-            color: #ffffff;
-        }
-
-        #particles-js {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-        }
-
-        .sticky-bar {
-            position: fixed;
-            top: 0;
-            width: 98.2%;
-            padding: 11px;
-            display: flex;
-            justify-content: flex-end;
-            gap: 20px;
-            z-index: 1000;
-            border-radius: 0 0 15px 15px;
-            box-shadow: 0 0 20px rgba(138, 43, 226, 0.5);
-            background: linear-gradient(90deg, #4b0082, #8a2be2);
-        }
-        
-        .sticky-bar a {
-            color: white;
-            /* text-decoration: none; */
-            font-size: 16px;
-            cursor: pointer;
-            padding: 8px 5px;
-            border-radius: 8px;
-            transition:  all 0.3s ease;
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
-            text-decoration: none;
-            white-space: nowrap;
-        }
-        .sticky-bar a:hover {
-            background: rgba(180, 114, 241, 0.3);
-            transform: scale(1.05);
-            box-shadow: 0 0 10px #8a2be2;
-        }
-        
-        
-
-        .hero {
-    height: 100vh;
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    color: #fcfbfa;
-    font-size: 2rem;
-    font-weight: bold;
-    text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
-    /* background: url('Images/top-view-mobile-phone-desk-diagram.jpg') center/cover no-repeat; */
     
-}
 
-.typewriter {
-  overflow: hidden;
-  white-space: nowrap;
-  /* border-right: 2px solid rgba(180, 114, 241, 0.3); */
-  width: 0;
-  animation: typing 3s steps(40, end) forwards, blink 0.5s step-end infinite;
-} 
-
- @keyframes typing {
-  from { width: 0; }
-  to { width: 100%; }
-} 
- 
- @keyframes blink {
-  50% { border-color: transparent; }
-} 
- @media (max-width: 600px) {
-  .typewriter {
-    font-size: 1.2rem;
-  }
-}
-
-.hero::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.4); /* Adjust transparency (0 = fully transparent, 1 = fully opaque) */
-    z-index: 1; /* Ensures overlay is above the background image */
-}
-
-/* Ensures the text/content is visible above the overlay */
-.hero * {
-    position: relative;
-    z-index: 2;
-}
-.projects {
-    max-width: 1300px;
-    margin: auto;
-    padding: 15px 20px 40px 20px;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(138, 43, 226, 0.3);
-    border-radius: 15px;
-    box-shadow: 0 0 20px rgba(138, 43, 226, 0.2);
-    margin-top: 80px;
-    backdrop-filter: blur(6px);
-    color: #d8d8f9;
-    margin-bottom: 80px;
-    font-size: larger;
-    
-   
-}
-
-
-.projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(380px,1fr));
-            gap: 20px;
-            align-items: stretch;
-        }
-        .project-item {
-    background: rgba(255, 255, 255, 0.05);
-    padding: 15px;
-    border-radius: 12px;
-    box-shadow: 0 0 10px rgba(138, 43, 226, 0.3);
-    transition: transform 0.3s ease, box-shadow 0.4s ease;
-    color: #ffffff;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between; /* Space out title, text, and button */
-    height: 90%;
-    overflow: hidden;
-}
-.project-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 0 20px rgba(138, 43, 226, 0.5);
-}
-
-        /* .project-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-        } */
-        .project-image {
-           width: 100%;
-            height: 200px;
-            border-radius: 8px;
-            background-size: contain;
-            background-repeat: no-repeat;
-            background-position: center;
-            background-color: white;
-        }
-        .project-text {
-            padding: 10px;
-            font-size: 16px;
-            font-weight: bold;;
-
-        }
-
-        .certifications {
-            margin-top: 60px;
-            max-width: 1300px;
-            margin: auto;
-            padding: 40px 20px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 15px;
-            box-shadow: 0 0 20px rgba(72, 61, 139, 0.3);
-            color: #e0e0ff;
-            font-size: 18px;
-            border: 1px solid rgba(72, 61, 139, 0.4);;
-        }
-        .certification {
-    
-    background: rgba(255, 255, 255, 0.07);
-    padding: 15px;
-    margin: 10px 0;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    cursor: pointer;
-    transition: background 0.3s, box-shadow 0.3s;
-}
-.certification:hover {
-    background: rgba(180, 114, 241, 0.1);
-    box-shadow: 0 0 12px rgba(180, 114, 241, 0.3);
-}
-
-        .dropdown {
-            display: none;
-            padding: 10px;
-            background: #f9f9ff;
-            margin-left: 15px;
-            border-left: 3px solid #4b0082;
-            border-radius: 4px;
-        }
-
-        a {
-    text-decoration: none;
-}
-
-/* Optional: Ensure hovered links still look clickable */
-
-.cert-image {
-    width: 200px; /* Adjust size as needed */
-    height: auto;
-    border-radius: 8px; /* Optional: Rounded corners */
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Optional: Adds a shadow */
-    cursor: pointer; /* Shows clickable behavior */
-    transition: transform 0.2s;
-}
-
-.cert-image:hover {
-    transform: scale(1.05); /* Slight zoom effect on hover */
-}
-
-
-.contact {
-    max-width: 1300px;
-    margin: auto;
-    padding: 40px 20px;
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 15px;
-    box-shadow: 0 0 15px rgba(173, 216, 230, 0.2);
-    margin-top: 80px;
-    color: #e0e0ff;
-    font-size: 18px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(6px);
-    
-}
-.contact a {
-    color: #a8c0ff;
-    text-decoration: underline;
-}
-.contact a:hover {
-    color: #ffffff;
-}
-
-
-
-      
-.footer-bar {
-    
-    padding: 20px;
-    border-radius: 15px 15px 0 0;
-    text-align: center;
-    color: white;
-    margin-top: 40px;
-    box-shadow: 0 0 20px rgba(138, 43, 226, 0.5);
-     background: linear-gradient(90deg, #4b0082, #8a2be2);
-}
-
-.footer-note {
-    font-size: 16px;
-    opacity: 0.95;
-    margin: 0;
-}
-
-h2{
-    display: flex;
-    justify-items: center;
-}
-
-
-    </style>
 </head>
 <body>
     <div id="particles-js"></div>
     <div class="sticky-bar">
-        <a href="#top">Home</a>
-        <a href="#projects">Projects</a>
-        <a href="#certifications">Certifications</a>
-        <a href="#contact">Contact</a>
-    </div>
+        <div class="hamburger" id="hamburger">
+          ☰
+        </div>
+        <nav class="nav-links" id="nav-links">
+          <a href="#top">Home</a>
+          <a href="#projects">Projects</a>
+          <a href="#certifications">Certifications</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </div>
     
-    <header id="top" class="hero">
-        <div class="text-center mt-10">
-            <h1 class="typewriter" style="animation-delay: 0.2s;">Hi, I'm Sameer Kumbharkar</h1>
-            <h1 class="typewriter" style="animation-delay: 3s;">Welcome to my Portfolio</h1>       
+    <header class="banner">
+        <div class="banner-container">
+          <div class="swiper-container">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <a href="https://example.com/project1" target="_blank">
+                  <img src="Images/banner1.jpg" alt="Banner 1">
+                  <div class="banner-text">Fast, Fresh & Delivered</div>
+                </a>
+              </div>
+              <div class="swiper-slide">
+                <a href="https://example.com/project2" target="_blank">
+                  <img src="Images/banner2.jpg" alt="Banner 2">
+                  <div class="banner-text">Code, Design, Repeat</div>
+                </a>
+              </div>
+              <div class="swiper-slide">
+                <a href="https://example.com/project3" target="_blank">
+                  <img src="Images/banner3.jpg" alt="Banner 3">
+                  <div class="banner-text">Projects That Pop</div>
+                </a>
+              </div>
+            </div>
+      
+            <!-- Pagination & Navigation -->
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+          </div>
+        </div>
     </header>
+      
+    
+      <!-- About Me -->
+      <section class="about-me">
+        <div class="about-card">
+          <div class="about-image">
+            <img src="Images/netflix_ott/1.png" alt="Sameer Kumbharkar">
+          </div>
+          <div class="about-text">
+            <h2>About Me</h2>
+            <p>Hi, I'm Sameer Kumbharkar. I'm passionate about data, design, and clean code. I love building useful stuff that looks cool too.</p>
+          </div>
+        </div>
+      </section>
+      
     
     <section id="projects" class="projects">
         <h2>PROJECTS</h2>
@@ -418,8 +176,31 @@ h2{
         </div>
     </section>
     
-
+    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
     <script>
+        const swiper = new Swiper('.swiper-container', {
+    loop: true,
+    autoplay: {
+      delay: 3000,
+      disableOnInteraction: false
+    },
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true
+    },
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev'
+    }
+  });
+
+  const hamburger = document.getElementById('hamburger');
+  const navLinks = document.getElementById('nav-links');
+
+  hamburger.addEventListener('click', () => {
+    navLinks.classList.toggle('show');
+  });
+
         function toggleDropdown(id) {
             let element = document.getElementById(id);
             if (element.style.display === "block") {
@@ -504,6 +285,7 @@ gsap.from(".projects, .certifications, .contact", {
   stagger: 0.3,
   ease: "power2.out"
 });
+
 
     </script>
     

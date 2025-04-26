@@ -5,170 +5,224 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> Data Pipeline using YouTube API and AWS RDS</title>
-    <link rel="stylesheet" href="styles.css">
-    <script defer src="script.js"></script>
-    <!-- Prism.js for Syntax Highlighting -->
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css"> -->
-     <!-- USE THIS LIGHT THEME INSTEAD -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-sql.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-sql.min.js"></script>
 
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #1a0933 0%, #2a1a5e 100%);
-            color: #000000;
-            margin: 0;
-            padding: 20px;
-        }
-
-        .container {
-            max-width: 1275px;
-            margin: auto;
-            padding: 20px;
-            background: #f0f0ff;
-            border-radius: 15px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            text-align: left;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
-            font-weight: 800;
-            color: #484848;
-        }
-
-        .project-image1 {
-            background-image: url('Images/mrbeast_youtubeapi/logo.png');
-            background-size: contain;
-            /* Ensures the full image is visible without cropping */
-            background-repeat: no-repeat;
-            /* Prevents image from repeating */
-            background-position: center;
-            /* Centers the image */
-            width: 100%;
-            /* Adjusts to the container's width */
-            height: 350px;
-            /* Set fixed height */
-            background-color: white;
-            /* Fills remaining space with white */
-        }
-
-        .dropdown {
-            display: none;
-            padding: 10px;
-            background: #ffffff;
-            margin-top: 5px;
-            border-left: 4px solid #4b0082;
-            border-radius: 4px;
-            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .dropdown-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px;
-            background: #4b0082;
-            color: white;
-            border-radius: 5px;
-            cursor: pointer;
-            margin-top: 10px;
-        }
-
-        .dropdown-header span {
-            font-size: 18px;
-        }
-
-        .dropdown-header i {
-            font-size: 20px;
-        }
-
-        pre {
-    background: white; /* White background like Jupyter */
-    color: #333; /* Dark readable text */
-    padding: 5px;
-    border-radius: 5px;
-    overflow-x: auto;
-    font-size: 14px;
-    border: 1px solid #ddd; /* Soft border for separation */
-}
-
-code {
-    font-family: 'Courier New', monospace;
-    color: #000; /* Plain dark text */
-}
-
-
-        .sub-dropdown {
-            display: none;
-            padding: 10px;
-            margin-left: 20px;
-            background: #e9ecef;
-            border-left: 3px solid #6c757d;
-            border-radius: 5px;
-        }
-
-        .sub-dropdown-header {
-            background: #6c757d;
-            color: white;
-            padding: 8px;
-            margin-top: 5px;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-
-        .sub-dropdown-header:hover {
-            background: #5a6268;
-        }
-
-        .project-image {
-            width: 100%;
-            height: 700px;
-            border-radius: 8px;
-            background-size: cover;
-            background-position: center;
-        }
-    </style>
-    <script>
-        function toggleDropdown(id) {
-            let element = document.getElementById(id);
-            let isVisible = element.style.display === 'block';
-
-            // Hide all dropdowns before opening a new one (optional)
-            // document.querySelectorAll('.dropdown').forEach(dropdown => {
-            //     dropdown.style.display = 'none';
-            // });
-
-            // Toggle the clicked dropdown
-            element.style.display = isVisible ? 'none' : 'block';
-
-            // Scroll into view only if opening
-            if (!isVisible) {
-                element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }
-        }
-
-    </script>
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #1a0933 0%, #2a1a5e 100%);
+      margin: 0;
+      padding: 20px;
+      color: #333;
+    }
+  
+    /* Hero Banner */
+    .project-hero {
+      background: linear-gradient(90deg, #4b0082, #8a2be2);
+      color: white;
+      padding: 10px 20px;
+      text-align: center;
+      border-radius: 15px;
+      margin-bottom: 30px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+    }
+    .project-hero h1 {
+      margin: 0;
+      font-size: 2.5rem;
+    }
+    .project-hero p {
+      margin-top: 10px;
+      font-size: 1.2rem;
+      letter-spacing: 1px;
+    }
+  
+    /* Highlight Badges */
+    .project-highlights {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+      margin: 20px 0;
+    }
+    .project-highlights div {
+      background: #e0d7ff;
+      color: #4b0082;
+      padding: 8px 15px;
+      border-radius: 20px;
+      font-weight: bold;
+      font-size: 0.9rem;
+    }
+  
+    /* Layout */
+    .project-layout {
+      display: flex;
+      gap: 30px;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+    .left-column, .right-column {
+      flex: 1 1 500px;
+      min-width: 300px;
+    }
+    .project-image1 {
+      background-image: url('Images/mrbeast_youtubeapi/logo.png');
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      width: 100%;
+      height: 300px;
+      background-color: white;
+      border-radius: 15px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    .left-summary {
+      margin-top: 20px;
+      background: #ffffff;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      color: #333;
+    }
+  
+    /* Dropdowns */
+    .dropdown-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 20px;
+      background: #4b0082;
+      color: white;
+      border-radius: 10px;
+      cursor: pointer;
+      margin-top: 20px;
+      font-size: 1.1rem;
+    }
+    .dropdown-header i {
+      font-size: 20px;
+    }
+    .dropdown {
+      display: none;
+      padding: 20px;
+      background: #fff;
+      margin-top: 5px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+  
+    /* Prism code styling */
+    pre {
+      background: #f9f9f9;
+      border-radius: 8px;
+      padding: 15px;
+      overflow-x: auto;
+    }
+    code {
+      font-family: 'Courier New', monospace;
+    }
+  
+    /* Resume Button */
+    .resume-btn {
+      display: inline-block;
+      margin: 30px auto 0;
+      background: #4b0082;
+      color: white;
+      padding: 12px 25px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: bold;
+      text-align: center;
+      transition: background 0.3s ease;
+    }
+    .resume-btn:hover {
+      background: #6a0dad;
+    }
+  
+    /* Sub-dropdowns */
+    .sub-dropdown-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #6c757d;
+      color: white;
+      padding: 10px 15px;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 10px;
+      font-size: 1rem;
+    }
+    .sub-dropdown-header:hover {
+      background: #5a6268;
+    }
+    .sub-dropdown {
+      display: none;
+      background: #e9ecef;
+      padding: 15px;
+      margin-top: 5px;
+      margin-left: 20px;
+      border-radius: 8px;
+      border-left: 3px solid #6c757d;
+    }
+  
+  </style>
+  
+  <script>
+    function toggleDropdown(id) {
+      let element = document.getElementById(id);
+      if (element.style.display === "block") {
+        element.style.display = "none";
+      } else {
+        element.style.display = "block";
+      }
+    }
+  
+    function toggleSubDropdown(id) {
+      let subElement = document.getElementById(id);
+      if (subElement.style.display === "block") {
+        subElement.style.display = "none";
+      } else {
+        subElement.style.display = "block";
+      }
+    }
+  </script>
+  
 </head>
-
 <body>
-    <div class="container">
-        <h1 style="text-align: center;">Data Pipeline using YouTube API and AWS RDS</h1>
-        <div class="project-image1">
+
+    <section class="project-hero">
+        <h1>Data Pipeline using YouTube API and AWS RDS</h1>
+        <p>Python | Pandas | AWS RDS | SQL</p>
+      </section>
+    
+      <!-- Highlight Quick Metrics -->
+      <div class="project-highlights">
+        <div>✔️ API Integration</div>
+        <div>✔️ 200+ Videos Fetched</div>
+        <div>✔️ Cloud Database Setup</div>
+        <div>✔️ SQL Queries Performed</div>
+      </div>
+
+      <div class="project-layout">
+        <!-- Left Column -->
+        <div class="left-column">
+          <div class="project-image1"></div>
+          <div class="left-summary">
+            <h2>Project Summary</h2>
+            <p>Built a data pipeline to fetch all videos and stats from MrBeast's YouTube channel using the YouTube Data API. Processed the data with Python, converted it into a dataframe using Pandas, and uploaded it into an AWS RDS MySQL database for further querying and exploration.</p>
+          </div>
+    
+          <!-- Resume Button -->
+          <a href="YOUR_RESUME_LINK_HERE" target="_blank" class="resume-btn">Download Resume</a>
         </div>
 
 
-
-        <div class="dropdown-header" onclick="toggleDropdown('summary')">
-            <span>Project Summary</span> <i>▼</i>
-        </div>
-        <div id="summary" class="dropdown">
-            Built a data pipeline to fetch all videos and stats from MrBeast's YouTube channel using the YouTube Data API. Processed the data with Python, converted it into a dataframe using Pandas, and uploaded it into an AWS RDS MySQL database for further querying and exploration.
-        </div>
+        <div class="right-column">
 
         <div class="dropdown-header" onclick="toggleDropdown('environment')">
             <span>Tools & Technologies Used</span> <i>▼</i>
         </div>
-        <div id="environment" class="dropdown">
+        <div id="environment" class="dropdown" style="display: block;">
             <ul>
                 <li>Python</li>
 
@@ -189,27 +243,8 @@ code {
         <div class="dropdown-header" onclick="toggleDropdown('steps')">
             <span>API & Data Acess</span> <i>▼</i>
         </div>
-        <div id="steps" class="dropdown">
-            <ul>
-                <li>Connected to the YouTube Data API using a developer</li>
-
-                <li>Pulled video metadata such as:</li>
-                
-                <ol>
-                    
-                    <li>Title</li>
-                    
-                    <li>Publish Date</li>
-                    
-                    <li>View Count</li>
-                    
-                    <li>Like Count</li>
-                    
-                    <li>Comment Count</li>
-                </ol>    
-                    
-                <li>Paginated through all videos using nextPageToken.</li>
-            </ul>
+        <div id="steps" class="dropdown" >
+            <p>Connected to YouTube Data API, pulled video metadata, paginated through all videos using nextPageToken.</p>
         </div>
 
         <div class="dropdown-header" onclick="toggleDropdown('data-source')">
@@ -238,11 +273,11 @@ code {
             
         </div>
 
-        <div class="dropdown-header" onclick="toggleDropdown('data-checks')">
+        <div class="dropdown-header" onclick="toggleDropdown('data-storage')">
             <span>Data Storage and Upload</span> <i>▼</i>
         </div>
 
-        <div id="data-checks" class="dropdown">
+        <div id="data-storage" class="dropdown">
 
             <div class="dropdown-header sub-dropdown-header" onclick="toggleDropdown('revenue-analysis')">
                 <span>Pulling Data using Youtube API</span> <i>▼</i>
@@ -468,6 +503,9 @@ code {
         <div id="conclusion" class="dropdown">
             <p>I successfully built a scalable data pipeline using Python and AWS RDS to extract and store YouTube channel data. Demonstrated proficiency in API interaction, data structuring, cloud database setup, and SQL querying. This project sets the foundation for future analysis or dashboard creation based on live YouTube data streams.</p>
     </div>
+
+</div>
+</div>
 
 </body>
 
