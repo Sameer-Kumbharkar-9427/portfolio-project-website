@@ -24,7 +24,7 @@
     .project-hero {
       background: linear-gradient(90deg, #4b0082, #8a2be2);
       color: white;
-      padding: 40px 20px;
+      padding: 10px 20px;
       text-align: center;
       border-radius: 15px;
       margin-bottom: 30px;
@@ -68,7 +68,7 @@
       flex: 1 1 500px;
       min-width: 300px;
     }
-    .project-image1 {
+    /* .project-image1 {
       background-image: url('Images/mrbeast_youtubeapi/logo.png');
       background-size: contain;
       background-repeat: no-repeat;
@@ -78,7 +78,7 @@
       background-color: white;
       border-radius: 15px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    }
+    } */
     .left-summary {
       margin-top: 20px;
       background: #ffffff;
@@ -194,8 +194,7 @@
 <body>
 
     <section class="project-hero">
-        <h1>Data Pipeline using YouTube API and AWS RDS</h1>
-        <p>Python | Pandas | AWS RDS | SQL</p>
+        <h1>Measuring & Digital Marketing KPI's using SQL and Visualizing using Power BI</h1>
       </section>
     
       <!-- Highlight Quick Metrics -->
@@ -211,8 +210,22 @@
         <div class="left-column">
           <div class="project-image1"></div>
           <div class="left-summary">
-            <h2>Project Summary</h2>
-            <p>Built a data pipeline to fetch all videos and stats from MrBeast's YouTube channel using the YouTube Data API. Processed the data with Python, converted it into a dataframe using Pandas, and uploaded it into an AWS RDS MySQL database for further querying and exploration.</p>
+            <h2>Project Overview</h2>
+            <p>In this project, I created a MySQL database and imported a dataset containing one month's digital marketing campaign data. After importing, I standardized and cleaned the dataset to ensure consistency and accuracy. <br><br>
+
+                I calculated key marketing KPIs such as ROMI, CTR, CAC, CPC, CPL, and Gross Profit, and created a database view for structured reporting. <br><br>
+                
+                The view was imported into Power BI, where I developed custom measures to standardize financial values into Indian denominations. I built a three-page dashboard: <br><br>
+                
+                Page 1: KPIs based on Acquisition, Conversion, and Revenue <br>
+                
+                Page 2: Campaign-wise insights including Average CAC, ROMI, AOV, and CAC vs CPC <br>
+                
+                Page 3: Category-wise insights with the same set of KPIs <br><br>
+                
+                This project enhanced my skills in SQL data processing, KPI calculation, Power BI visualization, and digital marketing analytics.
+                
+                </p>
           </div>
     
           <!-- Resume Button -->
@@ -224,10 +237,10 @@
         <div class="dropdown-header" onclick="toggleDropdown('environment')">
             <span>Tools & Technologies Used</span> <i>▼</i>
         </div>
-        <div id="environment" class="dropdown">
+        <div id="environment" class="dropdown" style="display: block;">
             <ul>
-            <li>MySQL Workbench: Used for data querying, cleaning, and analysis.</li>
-            <li>Power BI: For data visualization and dashboard creation.</li>
+            <li>MySQL Workbench</li>
+            <li>Power BI</li>
             </ul>
         </div>
         
@@ -422,29 +435,19 @@
         
         
         <div class="dropdown-header" onclick="toggleDropdown('conclusion')">
-            <span>Conclusion</span> <i>▼</i>
+            <span>Actionable Insights</span> <i>▼</i>
         </div>
         <div id="conclusion" class="dropdown">
             <ul>
-                <li>YouTube Blogger campaign stands out as the most effective in terms of ROMI (Return on Marketing Investment) and Average AOV (Average Order Value). It also contributes the highest revenue among all campaigns.</li><br>
-                <li>Facebook lal campaigns, while having high CAC (Customer Acquisition Cost), perform poorly in ROMI and AOV, making them less cost-effective.</li><br>
-                <li>Google Hot also performs well in terms of both AOV and ROMI, indicating a strong campaign ROI.</li><br>
-                <li>Influencer category, though smaller in volume, delivers the highest ROMI, making it a high-value, low-spend category.</li><br>
-                <li>In contrast, social media campaigns show the highest volume of leads and orders, but suffer from lower ROMI, indicating less efficiency in budget utilization.</li><br>
+                <li>The campaign achieved 157.8 Cr impressions and 30 Lakh clicks, resulting in a CTR of 0.19%, suggesting decent ad engagement but there's room for optimization.</li><br>
+                <li>Despite strong traffic, the click-to-lead conversion rate is only 0.22%, indicating the need to improve landing page effectiveness and lead capture processes.</li><br>
+                <li>The Average Customer Acquisition Cost (₹4370) is almost equal to the Average Order Value (₹4730), highlighting razor-thin margins and the need to either lower CAC or increase AOV.</li><br>
+                <li>YouTube Blogger campaigns delivered the highest performance with around 200% ROMI and highest revenue, indicating these campaigns should be scaled aggressively. <br>
+
+                Facebook lal campaigns showed high CAC and low ROMI,suggesting immediate optimization or pausing ofthese campaigns to prevent budget waste.</li><br>
+                <li>Social and Search categories generated higher volumes but with significantly lower ROMI, recommending a careful cost-control strategy while using them for volume generation.</li><br>
             </ul> 
     </div>
-
-    <div class="dropdown-header" onclick="toggleDropdown('insights')">
-        <span>Key Insights</span> <i>▼</i>
-    </div>
-    <div id="insights" class="dropdown">
-        
-        <ul>
-            <li>Focus more on influencer and YouTube-based campaigns for higher ROI.</li><br>
-            <li>Optimize or reconsider budget allocation for low-performing campaigns like Facebook lal</li><br>
-            <li>While social campaigns bring volume, mixing them with high-ROMI campaigns will ensure sustainable growth.</li>
-        </ul> 
-</div>
 
 </div>
 </div>

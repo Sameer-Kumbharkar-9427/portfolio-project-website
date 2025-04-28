@@ -22,7 +22,7 @@
     .project-hero {
       background: linear-gradient(90deg, #4b0082, #8a2be2);
       color: white;
-      padding: 10px 20px;
+      padding: 20px 20px;
       text-align: center;
       border-radius: 15px;
       margin-bottom: 30px;
@@ -66,7 +66,7 @@
       flex: 1 1 500px;
       min-width: 300px;
     }
-    .project-image1 {
+    /* .project-image1 {
       background-image: url('Images/mrbeast_youtubeapi/logo.png');
       background-size: contain;
       background-repeat: no-repeat;
@@ -76,7 +76,7 @@
       background-color: white;
       border-radius: 15px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    }
+    } */
     .left-summary {
       margin-top: 20px;
       background: #ffffff;
@@ -192,13 +192,13 @@
 
     <section class="project-hero">
         <h1>Data Pipeline using YouTube API and AWS RDS</h1>
-        <p>Python | Pandas | AWS RDS | SQL</p>
+        <!-- <p>Youtube API | Pandas | AWS RDS | SQL</p> -->
       </section>
     
       <!-- Highlight Quick Metrics -->
       <div class="project-highlights">
         <div>✔️ API Integration</div>
-        <div>✔️ 200+ Videos Fetched</div>
+        <div>✔️ 800+ Videos Fetched</div>
         <div>✔️ Cloud Database Setup</div>
         <div>✔️ SQL Queries Performed</div>
       </div>
@@ -208,8 +208,14 @@
         <div class="left-column">
           <div class="project-image1"></div>
           <div class="left-summary">
-            <h2>Project Summary</h2>
-            <p>Built a data pipeline to fetch all videos and stats from MrBeast's YouTube channel using the YouTube Data API. Processed the data with Python, converted it into a dataframe using Pandas, and uploaded it into an AWS RDS MySQL database for further querying and exploration.</p>
+            <h2>Project Overview</h2>
+            <p>I built a full ETL pipeline to collect, process, and analyze YouTube video data from MrBeast's channel. <br><br>
+
+                Using the YouTube Data API, I fetched all available video metadata and performance stats, handling API pagination and authentication. I processed and normalized the nested JSON responses using Python and Pandas, ensuring clean and structured tabular data. <br><br>
+                
+                After saving the processed dataset to a CSV file, I uploaded the data into a MySQL database hosted on AWS RDS. I connected to the RDS instance using MySQL Workbench to run exploratory SQL queries, such as identifying the most viewed videos, analyzing engagement trends, and exploring publishing patterns. <br><br>
+                
+                This project improved my skills in API integration, data engineering, cloud database management, and SQL analytics.</p>
           </div>
     
           <!-- Resume Button -->
@@ -224,7 +230,6 @@
         </div>
         <div id="environment" class="dropdown" style="display: block;">
             <ul>
-                <li>Python</li>
 
                 <li>YouTube Data API</li>
                     
@@ -240,21 +245,12 @@
             </ul>
         </div>
 
-        <div class="dropdown-header" onclick="toggleDropdown('steps')">
-            <span>API & Data Acess</span> <i>▼</i>
-        </div>
-        <div id="steps" class="dropdown" >
-            <p>Connected to YouTube Data API, pulled video metadata, paginated through all videos using nextPageToken.</p>
-        </div>
-
         <div class="dropdown-header" onclick="toggleDropdown('data-source')">
             <span>Data Description</span> <i>▼</i>
         </div>
         <div id="data-source" class="dropdown">
+            <p>Key columns:</p>
             <ul>
-                All videos extracted from MrBeast's channel.
-
-                <li>Key columns:</li>
 
                     <li>video_id</li>
 

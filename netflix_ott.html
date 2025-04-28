@@ -71,7 +71,7 @@
           flex: 1 1 500px;
           min-width: 300px;
         }
-        .project-image1 {
+        /* .project-image1 {
           background-image: url('Images/mrbeast_youtubeapi/logo.png');
           background-size: contain;
           background-repeat: no-repeat;
@@ -81,7 +81,7 @@
           background-color: white;
           border-radius: 15px;
           box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        }
+        } */
         .left-summary {
           margin-top: 20px;
           background: #ffffff;
@@ -215,7 +215,13 @@
               <div class="project-image1"></div>
               <div class="left-summary">
                 <h2>Project Summary</h2>
-                <p>Built a data pipeline to fetch all videos and stats from MrBeast's YouTube channel using the YouTube Data API. Processed the data with Python, converted it into a dataframe using Pandas, and uploaded it into an AWS RDS MySQL database for further querying and exploration.</p>
+                <p>In this project, I used Pandas, Matplotlib, and Seaborn within Jupyter Notebook to analyze a global Netflix dataset containing information about movies and shows. <br><br>
+
+                    I explored key metrics such as viewership trends, hours viewed, viewership by language, and the impact of seasons and holidays on content releases. <br><br>
+                    
+                    For visualization, I created bar charts to compare categories, line charts to show variation in viewership over time, and twin plots to analyze patterns such as viewership across different days of the week. <br><br>
+                    
+                    This project strengthened my skills in data exploration, trend analysis, and data visualization using Python libraries. </p>
               </div>
         
               <!-- Resume Button -->
@@ -573,22 +579,17 @@
         </div>
 
 
-        <div class="dropdown-header" onclick="toggleDropdown('conclusion')">
-            <span>Conclusion</span> <i>▼</i>
-        </div>
-        <div id="conclusion" class="dropdown">
-            <p>Netflix's strategic focus on producing and promoting shows, investing in multilingual content, and optimizing release schedules has been effective in maximizing viewership and catering to a diverse, global audience.</p>
-    </div>
-
     <div class="dropdown-header" onclick="toggleDropdown('insights')">
-        <span>Key Insights</span> <i>▼</i>
+        <span>Actionable Insights</span> <i>▼</i>
     </div>
     <div id="insights" class="dropdown">
         
         <ul>
-           <li>Shows had more total viewership hours than movies in 2023, indicating a strategic emphasis on series to boost engagement.li</li><br>
-            <li>English-language content dominated viewership, followed by Korean, highlighting the importance of diverse language offerings to cater to a global audience.</li><br>
-            <li>Viewership patterns varied with release dates, suggesting that strategic scheduling can enhance content performance.</li>
+           <li>Prioritize series (shows) over movies in content production and marketing campaigns, as shows consistently generate more than twice the viewership hours compared to movies.</li><br>
+            <li>Schedule major content releases around December and the end of the year, leveraging naturally high audience engagement during holiday periods.</li><br>
+            <li>Target the rainy season (monsoon months) for key releases and marketing pushes in regions where it applies, as viewership increases significantly during this period.</li> <br>
+            <li>Concentrate release days around Fridays, aligning with audience behavior trends that show a sharp spike in viewership and higher engagement for Friday releases.</li>
+
         </ul> 
 
 </div>

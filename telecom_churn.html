@@ -212,7 +212,10 @@
           <div class="project-image1"></div>
           <div class="left-summary">
             <h2>Project Summary</h2>
-            <p>Built a data pipeline to fetch all videos and stats from MrBeast's YouTube channel using the YouTube Data API. Processed the data with Python, converted it into a dataframe using Pandas, and uploaded it into an AWS RDS MySQL database for further querying and exploration.</p>
+            <p>In this project, I created a relational database and imported a CSV file containing telecom consumer data categorized by demographics, service types, and payment methods. <br><br>
+                I performed data cleaning by exploring null values, identifying distinct entries, and removing duplicates to ensure data integrity.
+                The cleaned dataset was imported into Power BI, where I conducted further data transformation and normalization. <br><br>
+                I developed key measures and used a variety of graphs and charts to visualize patterns, with a primary focus on identifying key drivers and trends behind customer churn.</p>
           </div>
     
           <!-- Resume Button -->
@@ -472,28 +475,18 @@ From db_churn.dbo.stg_churn;
             
         </div>
         
-        
-        <div class="dropdown-header" onclick="toggleDropdown('conclusion')">
-            <span>Conclusion</span> <i>▼</i>
-        </div>
-        <div id="conclusion" class="dropdown">
-            <ul>
-                <li>The overall churn rate is 26.99%, which is relatively high and suggests a significant portion of customers are leaving the service.</li><br>
-                <li>Most churn is observed among month-to-month contract holders, older age groups, and customers in certain geographic regions.</li><br>
-                <li>Services like Internet Service, Phone Service, and lack of add-on features are linked to higher churn.</li>
-            </ul>
-    </div>
 
     <div class="dropdown-header" onclick="toggleDropdown('insights')">
-        <span>Key Insights</span> <i>▼</i>
+        <span>Actionable Insights</span> <i>▼</i>
     </div>
     <div id="insights" class="dropdown">
         
         <ul>
-            <li>States like Jammu & Kashmir, Assam, and Jharkhand have the highest churn rates, possibly due to service quality, pricing, or local competitors.</li><br>
-            <li> Mailed checks and bank withdrawals are linked to higher churn rates. These customers may prefer easier or automated payment options. </li><br>
-            <li>Month-to-month contracts show the highest churn. Locking in customers with longer contracts helps reduce churn.</li><br>
-            <li>Internet and phone service users show over 90% churn, highlighting dissatisfaction or better alternatives elsewhere.</li>
+            <li>Promote longer-term contracts (e.g., 1-year or 2-year plans) with attractive incentives or discounts to reduce churn from month-to-month contract holders.</li><br>
+            <li> Target retention efforts towards older customers by offering personalized packages, loyalty rewards, or simplified service bundles to meet their specific needs. </li><br>
+            <li>Investigate service quality and pricing in high-churn states like Jammu & Kashmir, Assam, and Jharkhand, to improve customer satisfaction.</li><br>
+            <li>Enhance Internet and Phone service quality or revise pricing models to address the extremely high churn rates among these users, potentially by offering bundled packages or premium support.</li> <br>
+            <li>Promote easier payment methods such as auto-pay via cards or digital wallets to customers currently using mailed checks or bank withdrawals, through targeted communication and small incentives.</li> <br>
         </ul> 
 
 </div>
